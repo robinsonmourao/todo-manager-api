@@ -1,11 +1,12 @@
 class TaskController < ApplicationController
     def index
+        @tasks = Task.all
     end
 
     def new
         @task = Task.new
     end
-
+      
     def create
         @task = Task.new(task_params)
         if @task.save
@@ -14,7 +15,7 @@ class TaskController < ApplicationController
             render :new
         end
     end
-
+    
 
     private
 
