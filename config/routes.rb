@@ -8,14 +8,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :task, only: [:new, :create, :destroy]
-
+  resources :task, only: [:show, :new, :create, :destroy]
+  
   root to: "home#index"
 
   get "/tasks", to: "task#index"
-
-  # so renderiza a tela inicial VER SE DA PRA TIRAR DEPOIS
   post "/tasks/", to: "task#create"
-  # renderiza pagina para cadastrar novas tarefas
   get"/tasks/new", to: "task#new"
 end
