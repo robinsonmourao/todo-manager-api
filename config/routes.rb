@@ -14,5 +14,5 @@ Rails.application.routes.draw do
 
   get "/tasks", to: "task#index"
   post "/tasks/", to: "task#create"
-  get"/tasks/new", to: "task#new"
+  get "/tasks/new", to: "task#new"
 end

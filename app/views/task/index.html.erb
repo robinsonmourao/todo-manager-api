@@ -1,11 +1,9 @@
-<h2>Test rota tasks</h2>
-<a href="/tasks/new">Criar nova tarefa</a>
 <br>
 <% @tasks.each do |task| %>
     <br>
     <div>
         <strong>ID:</strong> <%= task.id %>
-        <strong>Titulo:</strong> <%= task.title %>
+        <strong>Titulo:</strong> <%= task.title %><br>
 
         <span style="display: inline-block;"> 
             <%= link_to task_path(task) do %>
