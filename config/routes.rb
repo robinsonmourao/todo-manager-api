@@ -8,11 +8,15 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :task, only: [:show, :new, :create, :destroy]
+  resources :task, only: [:show, :new, :create, :destroy, :update]
   
   root to: "home#index"
 
   get "/tasks", to: "task#index"
-  post "/tasks/", to: "task#create"
+
   get "/tasks/new", to: "task#new"
+  post "/tasks/", to: "task#create"
+
+  get "/tasks/:id", to: "task#edit"
+  patch "/tasks/:id", to: "task#update", as: "task_update"
 end
