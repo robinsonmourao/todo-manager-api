@@ -1,26 +1,30 @@
 <br>
-<% @tasks.each do |task| %>
-    <br>
-    <div>
-        <strong>ID:</strong> <%= task.id %>
-        <strong>Titulo:</strong> <%= task.title %><br>
+<ul class="task-list">
+    <% @tasks.each do |task| %>
+        <li>
+            <br>
+            <div>
+                <strong>ID:</strong> <%= task.id %>
+                <strong>Titulo:</strong> <%= task.title %><br>
 
-        <span style="display: inline-block;"> 
-            <%= link_to task_path(task) do %>
-                <button type="button">Mais detalhes da tarefa</button>
-            <% end %>
-        </span>
-        <span style="display: inline-block;"> 
-            <%= link_to task_update_path(task) do %>
-                <button type="button">Atualizar tarefa</button>
-            <% end %>
-        </span>
-        <span style="display: inline-block;"> 
-            <%= form_with(url: task_path(task), method: :delete, data: { confirm: "Tem certeza que deseja excluir esta tarefa?" }) do |form| %>
-                <%= form.submit "Excluir tarefa" %> 
-                <%# https://www.youtube.com/watch?v=QcaSdsXtdvo %>
-            <% end %>
-        </span>
-       
-    </div>
-<% end %>
+                <span style="display: inline-block;"> 
+                    <%= link_to task_path(task) do %>
+                        <button type="button">Mais detalhes da tarefa</button>
+                    <% end %>
+                </span>
+                <span style="display: inline-block;"> 
+                    <%= link_to task_update_path(task) do %>
+                        <button type="button">Atualizar tarefa</button>
+                    <% end %>
+                </span>
+                <span style="display: inline-block;"> 
+                    <%= form_with(url: task_path(task), method: :delete, data: { confirm: "Tem certeza que deseja excluir esta tarefa?" }) do |form| %>
+                        <%= form.submit "Excluir tarefa" %> 
+                        <%# https://www.youtube.com/watch?v=QcaSdsXtdvo %>
+                    <% end %>
+                </span>
+            
+            </div>
+        </li>
+        <% end %>
+</ul>
