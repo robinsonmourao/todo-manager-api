@@ -1,24 +1,3 @@
-# README
+# Não leia
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![Screenshot_2024-03-20_20:02:47](https://github.com/robinsonmourao/todo-manager-api/assets/49078615/252bc6b4-250d-48e1-a23e-1abfe211024d)
