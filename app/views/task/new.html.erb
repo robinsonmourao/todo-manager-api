@@ -1,11 +1,10 @@
 <h1>Nova task</h1>
 
 <%= form_with(model: @task, url: tasks_path) do |form| %>
-    <div>
+    <div class="form-task-textbox">
         <%= form.label :title %>
         <%= form.text_field :title %>
-    </div>
-    <div>
+        
         <%= form.label :description %>
         <%= form.text_field :description %>
     </div>

@@ -29,7 +29,15 @@
 }
 .header-container {
     width: 100%;
-    background-image: url('qapp.png');
+    background-image: url('logo.png');
     background-repeat: repeat-x;
     background-color: #fca7ff;
+}
+.form-user-textbox{
+    display: grid;
+    justify-content: center;
+}
+.form-task-textbox{
+    display: grid;
+    justify-content: center;
 }

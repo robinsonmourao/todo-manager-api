@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :task, only: [:show, :new, :create, :destroy, :update]
+  resources :user, only: [:new, :edit]
   
   root to: "home#index"
 
@@ -19,4 +20,6 @@ Rails.application.routes.draw do
 
   get "/tasks/:id", to: "task#edit"
   patch "/tasks/:id", to: "task#update", as: "task_update"
+
+  post "/users/", to: "user#create"
 end

@@ -12,7 +12,18 @@
 
 ActiveRecord::Schema[7.1].define(version: 2024_12_34_567890) do
   create_table "tasks", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
+    t.string "title", limit: 50, null: false
+    t.string "description", limit: 255, null: false
+    t.datetime "created_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username", limit: 50, null: false
+    t.string "email", limit: 255, null: false
+    t.string "password_digest", limit: 12, null: false
+    t.datetime "created_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
+  end
+
 end

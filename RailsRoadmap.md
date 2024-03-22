@@ -26,39 +26,39 @@ Criar um arquivo em db/migrate <time-stamp-tamanho-14>_create-<nome-tabela>.rb
 ### MÉTODO1:
 
 ```
-    class CreateTasks < ActiveRecord::Migration[7.1]
-    def change
-      create_table :tasks do |t|
-        t.string :title
-        t.text :description
-        end
-      end
+class Create<Entidades> < ActiveRecord::Migration[7.1]
+def change
+  create_table :<entidades> do |t|
+    t.string :title, uniqueness: true
+    t.text :description
     end
+  end
+end
 ```
 
 ### MÉTODO2:
 
 ```
-    class Create<Entidades> < ActiveRecord::Migration[7.1]
-        def up
-            execute <<-SQL
-              CREATE TABLE users (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                username VARCHAR(255) NOT NULL,
-                email VARCHAR(255) NOT NULL,
-                password_digest VARCHAR(255) NOT NULL,
-                created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-              );
-            SQL
-        end
-
-        def down
+class Create<Entidades> < ActiveRecord::Migration[7.1]
+    def up
         execute <<-SQL
-            DROP TABLE IF EXISTS users;
+          CREATE TABLE <entidade> (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username VARCHAR(50) NOT NULL UNIQUE,
+            email VARCHAR(12) NOT NULL UNIQUE,
+            password_digest VARCHAR(255) NOT NULL,
+            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+          );
         SQL
-        end
     end
+
+    def down
+    execute <<-SQL
+        DROP TABLE IF EXISTS <entidades>;
+    SQL
+    end
+end
 ```
 
 ### PS:
@@ -86,15 +86,15 @@ rails db:schema:dump
 # Perna completa de home/index onde Home é pego automaticamente de seu controller e index é o def(método) dentro de controller
 ## PS: É necessário ter ao menos 1 root, seja ele home ou outra entidade.
 
+`/config/routes.rb`
 ```
-/config/routes.rb
 <!-- root to: "controller#ação(def) -->
 root to: "home#index"
 
 /controllers/[home_controller.rb]
 class HomeController < ApplicationController
     def index
-    end    
+    end
 end
 
 /views/[home]/[index.html.erb]
@@ -111,23 +111,22 @@ end
 ## Perna completa para entidades/index     
 ### Criar modelo da entidade
 
+`/models/[<entidade>].rb`
 ```
-/models/[<entidade>].rb
-class Task < ApplicationRecord
-    validates :title, presence: true
+class <Entidade> < ApplicationRecord
+    validates :<attribute>, presence: true
 end
 ```
 
-### Cria rotas automaticamente para new, create e destroy
+### Cria rotas automaticamente
 
 `/config/routes.rb`
 ```
-    resources :task, only: [:new, :create, :show, :destroy]
+    resources :entidade, only: [:show, :new, :create, :show, :edit, :update. :destroy]
 ```
 OBS: Algumas rotas é necessário criar uma rota específica pra renderizar a ação, Exemplo: Para New e Update pois precisa-se receber dados por formulário dedicado.
 
-
-`<verbo>, to: "controller#ação(def)`
+`<verbo>, to: "controller#ação(def)", as: <ação_entidade_path>`
 ```
 get "/<entidades>", to: "<entidade>#index"
 ```
@@ -135,7 +134,7 @@ get "/<entidades>", to: "<entidade>#index"
 ### Renderiza pagina para cadastrar novas entidades
 
 ```
-get"/<entidades>/new", to: "<entidade>#new"
+get "/<entidades>/new", to: "<entidade>#new"
 ```
 
 ### Ação para cadastrar novas entidades em banco
@@ -148,7 +147,7 @@ post "/<entidades>/", to: "<entidade>#create"
 ```
 class <Entidade>Controller < ApplicationController
     def index
-        @tasks = Task.all
+        @<entidade> = <Entidade>.all
     end
 
     def new
@@ -156,7 +155,7 @@ class <Entidade>Controller < ApplicationController
     end
 
     def create
-        @<entidade> = <Entidade>.new(task_params)
+        @<entidade> = <Entidade>.new(<entidade>_params)
         if @<entidade>.save
             redirect_to <entidades>_path, notice: "<Entidade> foi criada!"
         else
@@ -218,7 +217,7 @@ end
 `/views/[<entidade>]/[show.html.erb]`
 ```
 <h1><%= @<entidade>.<atributo> %></h1>
-<%= link_to "Voltar para a lista de <entidades>", tasks_path %>
+<%= link_to "Voltar para a lista de <entidades>", <entidades>_path %>
 ```
 
 ### Adiciona ação para show
@@ -226,39 +225,38 @@ end
 `/controllers/[<entidade>.rb]`
 ```
 def show
-    @task = Task.find(params[:id])
+    @<entidade> = <Entidade>.find(params[:id])
 end
 ```
 
 ### Adiciona ação para destroy
 
 `/controllers/[<entidade>.rb]`
-```    
+```
 def destroy
-    @task = Task.find(params[:id])
-    @task.destroy
-    redirect_to tasks_path, notice: "Task foi destruída!"
+    @<entidade> = <Entidade>.find(params[:id])
+    @<entidade>.destroy
+    redirect_to <entidades>_path, notice: "<Entidade> foi destruída!"
 end
 ```
 
 ### Adiciona botões no ui
 
-`views/task/index.html.erb`
+`views/<entidade>/index.html.erb`
 ```
-<% @tasks.each do |task| %>
+<% @<entidades>.each do |<entidade>| %>
     <br>
     <div>
-        <strong>ID:</strong> <%= task.id %>
-        <strong>Titulo:</strong> <%= task.title %>
+        <strong>ID:</strong> <%= <entidade>.id %>
 
         <span style="display: inline-block;"> 
-            <%= link_to task_path(task) do %>
+            <%= link_to <entidade>_path(<entidade>) do %>
                 <button type="button">Mais detalhes da tarefa</button>
             <% end %>
         </span>
         <span style="display: inline-block;"> 
-            <%= form_with(url: task_path(task), method: :delete, data: { confirm: "Tem certeza que deseja excluir esta tarefa?" }) do |form| %>
-                <%= form.submit "Excluir tarefa" %>
+            <%= form_with(url: <entidade>_path(<entidade>), method: :delete, data: { confirm: "Tem certeza que deseja excluir esta tarefa?" }) do |form| %>
+                <%= form.submit "Excluir <entidade>" %>
             <% end %>
         </span>
         
@@ -299,11 +297,11 @@ end
 `/app/controllers/<entidade>_controller.rb`
 ``` 
 def update
-    @task = Task.find(params[:id])
-    if @task.update(task_params)
-        redirect_to task_path, notice: "Task foi atualizada."
+    @<entidade> = <Entidade>.find(params[:id])
+    if @<entidade>.update(<entidade>_params)
+        redirect_to <entidade>_path, notice: "<Entidade> foi atualizada."
     elsif
-        redirect_to task_path, notice: "Não foi possível atualizar a task!"
+        redirect_to <entidade>_path, notice: "Não foi possível atualizar a <entidade>!"
     end
 end
 ``` 
@@ -312,7 +310,7 @@ end
 
 `views/<entidade>/edit.html.rb`
 ``` 
-<%= form_with(model: @task, local: true) do |form| %>
+<%= form_with(model: @<entidade>, local: true) do |form| %>
     <%= form.label :title %>
     <%= form.text_field :title %>
 
@@ -326,12 +324,11 @@ end
 
 ### Desbrickar schema.rb caso fique travado em atributos created_at: nil, updated_at: nil
 
-`''      ''        ''                ''               <nomeColuna:string> <nomeColuna:string>`
 ```
-rails generate migration AddTitleAndDirectorToMovies title:string director:string
+rails generate migration Create<Entidade> <nomeColuna:string> <nomeColuna:string>
 ```
 
-# Se pode definir as rotas automaticamente:
+### Se pode definir as rotas automaticamente:
 
 ``` 
 resources :<entidades>, only: [:index, :show, :new, :create, :edit, :update, :destroy]
