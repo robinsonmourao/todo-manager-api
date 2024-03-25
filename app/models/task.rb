@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
     validates :title, presence: true, uniqueness: true
-    # validates :description, presence: true
+    
+    belong_to :user
 end

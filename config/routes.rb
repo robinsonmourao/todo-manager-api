@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :task, only: [:show, :new, :create, :destroy, :update]
   resources :user, only: [:new, :edit]
+  resources :user_task, only: [:create]
   
   root to: "home#index"
 

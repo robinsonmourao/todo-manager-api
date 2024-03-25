@@ -322,6 +322,58 @@ end
 <% end %>
 ``` 
 
+# Codificar migração para relações em banco
+
+`./db/migrate/<version-tamanho-14>_<create_<entidade1_entidade2>.rb`
+```
+class Create<Entidade1_Entidades2> < ActiveRecord::Migration[7.1]
+    def up
+        execute <<-SQL
+            CREATE TABLE <entidade1_entidades2> (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                <entidade1>_id INTEGER NOT NULL,
+                <entidade2>_id INTEGER NOT NULL,
+
+                created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                
+                FOREIGN KEY (<entidade1>_id) REFERENCES <entidade1>(id),
+                FOREIGN KEY (<entidade2>_id) REFERENCES <entidade2>(id)
+            );
+        SQL
+    end
+
+    def down
+        execute <<-SQL
+            DROP TABLE IF EXISTS <entidade1_entidades2>;
+        SQL
+    end
+end
+```
+
+# Modelar relações entre entidades
+
+`./app/models/<entidade1>.rb`
+```
+class <entidade1> < ApplicationRecord
+  has_many :<entidades2>, dependent: :destroy
+end
+```
+`./app/models/<entidade2>.rb`
+```
+class <Entidade2> < ApplicationRecord
+  belongs_to :<entidade1>
+end
+```
+
+# Criar condição de autenticação em caso de usuários
+
+`./app/controllers/<entidade2>_controller.rb`
+```
+class <Entidade2>Controller < ApplicationController
+    before_action :authenticate_<entidade1>!
+    before_action :set_<entidade2>, only: [:show, :Edit, :update, :destroy]
+```
 ### Desbrickar schema.rb caso fique travado em atributos created_at: nil, updated_at: nil
 
 ```
