@@ -11,6 +11,14 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_12_34_567890) do
+  create_table "sessions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "token", limit: 255, null: false
+    t.datetime "expires_at", precision: nil, null: false
+    t.datetime "created_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "title", limit: 50, null: false
     t.string "description", limit: 255, null: false
@@ -33,6 +41,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_34_567890) do
     t.datetime "updated_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
   end
 
+  add_foreign_key "sessions", "user"
   add_foreign_key "user_tasks", "task"
   add_foreign_key "user_tasks", "user"
 end

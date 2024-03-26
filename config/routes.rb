@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :tasks, only: [:show, :new, :create, :destroy]
   resources :users, only: [:new, :edit]
   resources :user_tasks, only: [:create, :destroy]
-  # resources :session, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
   
   root to: "home#index"
 
@@ -28,6 +28,6 @@ Rails.application.routes.draw do
   # get "users/new", to: "users#new"
   post "/users/", to: "users#create"
 
-  # post "/login", to: "session#login", as: "login"
-  # delete "/logout", to: "session#logout"
+  post "/login", to: "sessions#login", as: "login"
+  delete "/logout", to: "sessions#logout"
 end
