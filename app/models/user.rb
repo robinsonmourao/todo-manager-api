@@ -4,4 +4,5 @@ class User < ApplicationRecord
     validates :password_digest, presence:true
 
     has_many :tasks, dependent: :destroy
+    has_many :sessions
 end
