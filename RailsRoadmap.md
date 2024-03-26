@@ -391,3 +391,9 @@ get "/movies", to: "movies#index"
 get "/movie/new", to: "movies#create"
 get "/movie/:id/update", to: "movies#update"
 ```
+
+# Visualizar informações das colunas de tabelas
+
+```
+PRAGMA table_info(<nome-tabela>);
+```
