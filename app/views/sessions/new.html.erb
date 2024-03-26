@@ -1,15 +1,13 @@
-<h2> Bem vindo as guia sessoes </h2>
+<h2>Iniciar nova Sessão </h2>
 
-<%= form_with(model: @session, url: sessions_path) do |form| %>
+<%= form_with(model: @session, url: login_send_path) do |form| %>
     <div class="form-session-textbox">
-        <%= form.label :username %>
-        <%= form.text_field :username %>
 
         <%= form.label :email %>
-        <%= form.text_field :email %>
+        <%= form.text_field :email, placeholder: "Email" %>
 
-        <%= form.label :password_digest %>
-        <%= form.text_field :password_digest %>
+        <%= form.label :password %>
+        <%= form.password_field :password_digest, placeholder: "Senha" %>
     </div>
 
     <div>

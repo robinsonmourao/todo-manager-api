@@ -9,9 +9,8 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :tasks, only: [:show, :new, :create, :destroy]
-  resources :users, only: [:new, :edit]
+  resources :users, only: [:edit]
   resources :user_tasks, only: [:create, :destroy]
-  resources :sessions, only: [:new, :create, :destroy]
   
   root to: "home#index"
 
@@ -25,9 +24,14 @@ Rails.application.routes.draw do
   patch "/tasks/:id", to: "tasks#update", as: "update_task"
 
 
-  # get "users/new", to: "users#new"
-  post "/users/", to: "users#create"
+  get "/signup/", to: "users#new", as: "new_user"
+  post "/signup/", to: "users#create"
 
-  post "/login", to: "sessions#login", as: "login"
-  delete "/logout", to: "sessions#logout"
+  delete "/unsubscribe", to: "users#destroy"
+
+
+  get "/login", to: "sessions#new"
+  post "/login/send", to: "sessions#login", as: "login_send"
+
+  delete "/logout", to: "sessions#logout", as: "logout"
 end
