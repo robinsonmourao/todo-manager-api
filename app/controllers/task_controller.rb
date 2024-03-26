@@ -1,6 +1,6 @@
 class TaskController < ApplicationController
-    before_action :authenticate_user!
-    before_action :set_task, only: [:show, :Edit, :update, :destroy]
+    # before_action :login_necessario
+    # before_action :set_task, only: [:show, :edit, :update, :destroy]
 
     def index
         @tasks = Task.all
@@ -44,5 +44,11 @@ class TaskController < ApplicationController
 
     def task_params
         params.require(:task).permit(:title, :description)
+    end
+
+    def login_necessario
+        unless session[:user_id]
+            redirect_to login_path, notice: "Voce deve estar logado para continuar!"
+        end
     end
 end

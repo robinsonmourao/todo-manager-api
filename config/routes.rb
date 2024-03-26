@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
   resources :task, only: [:show, :new, :create, :destroy, :update]
   resources :user, only: [:new, :edit]
-  resources :user_task, only: [:create]
+  resources :user_task, only: [:create, :destroy]
+  # resources :session, only: [:new, :create, :destroy]
   
   root to: "home#index"
 
@@ -23,4 +24,8 @@ Rails.application.routes.draw do
   patch "/tasks/:id", to: "task#update", as: "task_update"
 
   post "/users/", to: "user#create"
+
+  # get "/sessions/", to: "session#new"
+  # post "/sessions/:id", to: "session#login", as: "login"
+  # post "/sessions/:id", to: "session#logout"
 end
