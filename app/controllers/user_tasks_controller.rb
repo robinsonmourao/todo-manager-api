@@ -1,4 +1,4 @@
-class UserTaskController < ApplicationController
+class UserTasksController < ApplicationController
     def create
         @user_task = User_task(user_task_params)
     end
