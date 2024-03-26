@@ -8,24 +8,26 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :task, only: [:show, :new, :create, :destroy, :update]
+  resources :tasks, only: [:show, :new, :create, :destroy]
   resources :user, only: [:new, :edit]
   resources :user_task, only: [:create, :destroy]
   # resources :session, only: [:new, :create, :destroy]
   
   root to: "home#index"
 
-  get "/tasks", to: "task#index"
 
-  get "/tasks/new", to: "task#new"
-  post "/tasks/", to: "task#create"
+  get "/tasks", to: "tasks#index"
 
-  get "/tasks/:id", to: "task#edit"
-  patch "/tasks/:id", to: "task#update", as: "task_update"
+  # get "/tasks/new", to: "tasks#new"
+  post "/tasks/", to: "tasks#create"
+
+  get "/tasks/:id/edit", to: "tasks#edit", as: "edit_task"
+  patch "/tasks/:id", to: "tasks#update", as: "update_task"
+
 
   post "/users/", to: "user#create"
+  
 
-  # get "/sessions/", to: "session#new"
-  # post "/sessions/:id", to: "session#login", as: "login"
-  # post "/sessions/:id", to: "session#logout"
+  # post "/login", to: "session#login", as: "login"
+  # delete "/logout", to: "session#logout"
 end

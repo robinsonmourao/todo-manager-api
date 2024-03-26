@@ -1,4 +1,4 @@
-https://youtu.be/eCMHCghmcZc?list=PLEdPHGYbHhldWUFs2Q-jSzXAv3NXh4wu0&t=755
+### https://guides.rubyonrails.org/getting_started.html
 
 # Criar novo projeto
 
@@ -122,30 +122,34 @@ end
 
 `/config/routes.rb`
 ```
-    resources :entidade, only: [:show, :new, :create, :show, :edit, :update. :destroy]
+    resources :entidades, only: [:show, :new, :create, :edit, :update, :destroy]
 ```
 OBS: Algumas rotas é necessário criar uma rota específica pra renderizar a ação, Exemplo: Para New e Update pois precisa-se receber dados por formulário dedicado.
 
-`<verbo>, to: "controller#ação(def)", as: <ação_entidade_path>`
+`<verb> "/path/", to: "controllers#ação(def)", as: <ação_entidades_path>`
 ```
-get "/<entidades>", to: "<entidade>#index"
+get "/<entidades>", to: "<entidades>#acao", as: "acao_entidades_path"
+```
+`Caso houver conflitos com outras rotas é possível especificar qual html.erb o rails irá renderizar`
+```
+get "/<entidades>"/acao, to: "<entidades>#acao", as: "acao_entidades_path"
 ```
 
 ### Renderiza pagina para cadastrar novas entidades
 
 ```
-get "/<entidades>/new", to: "<entidade>#new"
+get "/<entidades>/new", to: "<entidades>#new"
 ```
 
 ### Ação para cadastrar novas entidades em banco
 
 ```
-post "/<entidades>/", to: "<entidade>#create"
+post "/<entidades>/", to: "<entidades>#create"
 ```
 
-`/controllers/[<entidade>_controller.rb]`
+`/controllers/[<entidades>_controller.rb]`
 ```
-class <Entidade>Controller < ApplicationController
+class <Entidades>Controller < ApplicationController
     def index
         @<entidade> = <Entidade>.all
     end
@@ -179,7 +183,7 @@ end
 ...
 <ul>
     <li>
-    <a href="/<entidade>">"<entidade>"</a>
+    <a href="/<entidades>">Texto</a>
     </li>
 </ul>
 ```
@@ -190,14 +194,14 @@ end
 `/views/[<entidade>]/[index.html.erb]`
 ```
 <h2>Test rota entidade</h2>
-<a href="/<entidades>/new">Criar nova <entidade></a>
+<a href="/<entidades>/new">Texto</a>
 ```
 
 ### Renderiza formulário ao chamar rota /<entidades>/new
 
-`/views/[<entidade>]/[new.html.erb]`
+`/views/[<entidades>]/[new.html.erb]`
 ```
-    <h1>Nova <entidade></h1>
+    <h1>Texto nova <entidade></h1>
 
     <%= form_with(model: @<entidade>, url: <entidades>_path) do |form| %>
         <div>
@@ -214,7 +218,7 @@ end
 
 ### Renderiza uma entidade em especifico
 
-`/views/[<entidade>]/[show.html.erb]`
+`/views/[<entidades>]/[show.html.erb]`
 ```
 <h1><%= @<entidade>.<atributo> %></h1>
 <%= link_to "Voltar para a lista de <entidades>", <entidades>_path %>
@@ -222,7 +226,7 @@ end
 
 ### Adiciona ação para show
 
-`/controllers/[<entidade>.rb]`
+`/controllers/[<entidades>_controller.rb]`
 ```
 def show
     @<entidade> = <Entidade>.find(params[:id])
@@ -231,7 +235,7 @@ end
 
 ### Adiciona ação para destroy
 
-`/controllers/[<entidade>.rb]`
+`/controllers/[<entidades>_controller.rb]`
 ```
 def destroy
     @<entidade> = <Entidade>.find(params[:id])
@@ -242,7 +246,7 @@ end
 
 ### Adiciona botões no ui
 
-`views/<entidade>/index.html.erb`
+`views/<entidades>/index.html.erb`
 ```
 <% @<entidades>.each do |<entidade>| %>
     <br>
@@ -251,12 +255,12 @@ end
 
         <span style="display: inline-block;"> 
             <%= link_to <entidade>_path(<entidade>) do %>
-                <button type="button">Mais detalhes da tarefa</button>
+                <button type="button">Texto</button>
             <% end %>
         </span>
         <span style="display: inline-block;"> 
             <%= form_with(url: <entidade>_path(<entidade>), method: :delete, data: { confirm: "Tem certeza que deseja excluir esta tarefa?" }) do |form| %>
-                <%= form.submit "Excluir <entidade>" %>
+                <%= form.submit "Texto" %>
             <% end %>
         </span>
         
@@ -272,20 +276,20 @@ end
 
 `...`
 ```
-get "/<entidade>/:id", to: "<entidade>#edit"
+get "/<entidades>/:id", to: "<entidades>#edit"
 ```
 
 ### Rota pra persistir novos dados editados
 ### OBS: Mesmo o Rails gerando as rotas automaticamente tem que ter esta rota adicional senão o patch fica sem rota
 
 ```
-patch "/<entidade>/:id", to: "<entidade>#update", as: "<entidade>"
+patch "/<entidades>/:id", to: "<entidades>#update", as: "acao_<entidade>"
 ...
 ```
 
 ### Renderiza [edit.html.rb] para update da <entidade>
 
-`/app/controllers/<entidade>_controller.rb`
+`/app/controllers/<entidades>_controller.rb`
 ```
 def edit
     @<entidade> = <Entidade>.find(params[:id])
@@ -294,21 +298,21 @@ end
 
 ### Cria ação para update da <entidade> em banco
 
-`/app/controllers/<entidade>_controller.rb`
+`/app/controllers/<entidades>_controller.rb`
 ``` 
 def update
     @<entidade> = <Entidade>.find(params[:id])
     if @<entidade>.update(<entidade>_params)
-        redirect_to <entidade>_path, notice: "<Entidade> foi atualizada."
+        redirect_to <entidades>_path, notice: "<Entidade> foi atualizada."
     elsif
-        redirect_to <entidade>_path, notice: "Não foi possível atualizar a <entidade>!"
+        redirect_to <entidades>_path, notice: "Não foi possível atualizar a <entidade>!"
     end
 end
 ``` 
 
 ### Página a ser renderizada quando a função edit chamar
 
-`views/<entidade>/edit.html.rb`
+`views/<entidades>/edit.html.rb`
 ``` 
 <%= form_with(model: @<entidade>, local: true) do |form| %>
     <%= form.label :title %>
@@ -366,14 +370,6 @@ class <Entidade2> < ApplicationRecord
 end
 ```
 
-# Criar condição de autenticação em caso de usuários
-
-`./app/controllers/<entidade2>_controller.rb`
-```
-class <Entidade2>Controller < ApplicationController
-    before_action :authenticate_<entidade1>!
-    before_action :set_<entidade2>, only: [:show, :Edit, :update, :destroy]
-```
 ### Desbrickar schema.rb caso fique travado em atributos created_at: nil, updated_at: nil
 
 ```

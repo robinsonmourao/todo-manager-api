@@ -1,4 +1,4 @@
-class TaskController < ApplicationController
+class TasksController < ApplicationController
     # before_action :login_necessario
     # before_action :set_task, only: [:show, :edit, :update, :destroy]
 
@@ -28,9 +28,9 @@ class TaskController < ApplicationController
     def update
         @task = Task.find(params[:id])
         if @task.update(task_params)
-            redirect_to task_path, notice: "Task foi atualizada."
+            redirect_to tasks_path, notice: "Task foi atualizada."
         elsif
-            redirect_to task_path, notice: "Não foi possível atualizar a task!"
+            redirect_to tasks_path, notice: "Não foi possível atualizar a task!"
         end
     end
 
