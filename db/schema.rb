@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_34_567890) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_34_560003) do
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "token", limit: 255, null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_34_567890) do
     t.datetime "updated_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
   end
 
-  add_foreign_key "sessions", "user"
-  add_foreign_key "user_tasks", "task"
-  add_foreign_key "user_tasks", "user"
+  add_foreign_key "sessions", "users"
+  add_foreign_key "user_tasks", "tasks"
+  add_foreign_key "user_tasks", "users"
 end

@@ -9,8 +9,8 @@ class CreateUserTasks < ActiveRecord::Migration[7.1]
                 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                                 
-                FOREIGN KEY (user_id) REFERENCES user(id),
-                FOREIGN KEY (task_id) REFERENCES task(id)
+                FOREIGN KEY (user_id) REFERENCES users(id),
+                FOREIGN KEY (task_id) REFERENCES tasks(id)
             );
         SQL
     end
