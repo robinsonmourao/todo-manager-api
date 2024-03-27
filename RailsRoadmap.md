@@ -360,15 +360,23 @@ end
 `./app/models/<entidade1>.rb`
 ```
 class <entidade1> < ApplicationRecord
-  has_many :<entidades2>, dependent: :destroy
+  has_many :<entidades2>, through: :user_tasks, dependent: :destroy
+  has_many :<entidate-relacao>
 end
 ```
 `./app/models/<entidade2>.rb`
 ```
 class <Entidade2> < ApplicationRecord
   belongs_to :<entidade1>
+  has_one :<entidade-relacao>
 end
 ```
+`./app/models/<entidade-relacao>.rb`
+```
+    belongs_to :<entidade1>
+    belongs_to :<entidade2>
+```
+VERIFICAR
 
 ### Desbrickar schema.rb caso fique travado em atributos created_at: nil, updated_at: nil
 

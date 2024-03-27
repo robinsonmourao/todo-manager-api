@@ -1,9 +1,17 @@
 class TasksController < ApplicationController
-    # before_action :login_necessario
+    before_action :require_login
     # before_action :set_task, only: [:show, :edit, :update, :destroy]
 
+    # e as tarefas estão sendo criadas de maneira geral, ou seja, 
+    # task criada no userA impossibilitará cirar outra com mesmo title mesmo logado com userB
+
     def index
-        @tasks = Task.all
+        if session[:user_id]
+            @user = User.find(session[:user_id])
+            @tasks = @user.user_tasks.map(&:task)
+        else
+            redirect_to login_path, notice: "Faça login apra acessar suas tasks!"
+        end
     end
 
     def show
@@ -12,12 +20,17 @@ class TasksController < ApplicationController
 
     def new
         @task = Task.new
-    end      
+    end
     def create
+
         @task = Task.new(task_params)
         if @task.save
+            user = User.find_by(id: session[:user_id])
+            @user_tasks = UserTask.new(user_id: current_user.id, task_id: @task.id)
+            @user_tasks.save
             redirect_to tasks_path, notice: "Task foi criada."
         else
+            @notice = "Não foi possivel salvar a tarefa!"
             render :new
         end
     end
@@ -35,9 +48,19 @@ class TasksController < ApplicationController
     end
 
     def destroy
+
         @task = Task.find(params[:id])
-        @task.destroy
-        redirect_to tasks_path, notice: "Task foi destruída."
+        @user_tasks = UserTask.find_by(task_id: @task.id)
+        
+        if @user_tasks && @task
+
+            @user_tasks.destroy
+            @task.destroy
+
+            redirect_to tasks_path, notice: "Task foi destruída."
+        else
+            @notice = "Não foi possivel excluir a associação entre user e task"
+        end
     end
 
     private
@@ -46,7 +69,7 @@ class TasksController < ApplicationController
         params.require(:task).permit(:title, :description)
     end
 
-    def login_necessario
+    def require_login
         unless session[:user_id]
             redirect_to login_path, notice: "Voce deve estar logado para continuar!"
         end

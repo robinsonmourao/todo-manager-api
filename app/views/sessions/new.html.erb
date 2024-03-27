@@ -1,13 +1,17 @@
 <h2>Iniciar nova Sessão </h2>
 
-<%= form_with(model: @session, url: login_send_path) do |form| %>
+<% if @notice.present? %>
+    <div class="notification is-link is-light"><%= @notice %></div>
+<% end %>
+
+<%= form_with(model: @session, url: login_send_path, method: :post) do |form| %>
     <div class="form-session-textbox">
 
         <%= form.label :email %>
         <%= form.text_field :email, placeholder: "Email" %>
 
         <%= form.label :password %>
-        <%= form.password_field :password_digest, placeholder: "Senha" %>
+        <%= form.password_field :password, placeholder: "Senha" %>
     </div>
 
     <div>
