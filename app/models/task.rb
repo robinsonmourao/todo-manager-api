@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-    validates :title, presence: true, uniqueness: true
     
-    has_one :user_tasks
+    belongs_to :user
+    validates :title, presence: true, uniqueness: { scope: :user_id }    
 end

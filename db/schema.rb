@@ -20,15 +20,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_34_560003) do
   end
 
   create_table "tasks", force: :cascade do |t|
+    t.integer "user_id"
     t.string "title", limit: 50, null: false
     t.string "description", limit: 255, null: false
-    t.datetime "created_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "updated_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
-  end
-
-  create_table "user_tasks", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "task_id", null: false
     t.datetime "created_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
   end
@@ -42,6 +36,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_34_560003) do
   end
 
   add_foreign_key "sessions", "users"
-  add_foreign_key "user_tasks", "tasks"
-  add_foreign_key "user_tasks", "users"
+  add_foreign_key "tasks", "users"
 end

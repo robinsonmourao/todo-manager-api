@@ -25,28 +25,73 @@ Criar um arquivo em db/migrate <time-stamp-tamanho-14>_create-<nome-tabela>.rb
 
 ### MÉTODO1:
 
+`(n,n)`
 ```
 class Create<Entidades> < ActiveRecord::Migration[7.1]
-def change
-  create_table :<entidades> do |t|
-    t.string :title, uniqueness: true
-    t.text :description
+    def change
+        create_table :<entidades> do |t|
+        t.string :username, null:false, unique: true
+        t.timestamps
+        end
     end
-  end
+end
+```
+```
+class Create<Entidades2> < ActiveRecord::Migration[7.1]
+    def change
+        create_table :<entidade2> do |t|
+        t.string :title, null:false, unique: true
+        t.timestamps
+        end
+    end
+end
+```
+```
+class Create<Entidade-relacao> < ActiveRecord:Migration[7.1]
+    def change
+        create table :<entidade-relacao> do |t|
+        t.integer :<entidade>_id, null:false
+        t.integer :<entidade2>_id, null:false
+        t.timestamps
+        end
+    end
+end
+```
+
+`(1,n)`
+```
+class Create<Entidades> < ActiveRecord::Migration[7.1]
+    def change
+        create_table :<entidades> do |t|
+        t.string :username, null:false, unique: true
+        t.timestamps
+        end
+    end
+end
+```
+```
+class Create<Entidades2> < ActiveRecord::Migration[7.1]
+    def change
+        create_table :<entidade2> do |t|
+        t.string :title, null:false, unique: true
+        t.references :<entidade>, null: false, foreign_key: true
+        t.timestamps
+        end
+    end
 end
 ```
 
 ### MÉTODO2:
 
+`(n,n)`
 ```
 class Create<Entidades> < ActiveRecord::Migration[7.1]
     def up
         execute <<-SQL
-          CREATE TABLE <entidade> (
+          CREATE TABLE <entidades> (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username VARCHAR(50) NOT NULL UNIQUE,
-            email VARCHAR(12) NOT NULL UNIQUE,
-            password_digest VARCHAR(255) NOT NULL,
+
             created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
           );
@@ -54,9 +99,101 @@ class Create<Entidades> < ActiveRecord::Migration[7.1]
     end
 
     def down
-    execute <<-SQL
-        DROP TABLE IF EXISTS <entidades>;
-    SQL
+        execute <<-SQL
+            DROP TABLE IF EXISTS <entidades>;
+        SQL
+    end
+end
+```
+```
+class Create<Entidades2> < ActiveRecord::Migration[7.1]
+    def up
+        execute <<-SQL
+            CREATE TABLE <entidades2> (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title VARCHAR(255) NOT NULL,
+
+                created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+            )
+        SQL
+        end
+    end
+    def down
+        execute <<-SQL
+            DROP TABLE IF EXISTS <entidades2>;
+        SQL
+    end
+```
+```
+class Create<Entidade_Entidades2> < ActiveRecord::Migration[7.1]
+    def up
+        execute <<-SQL
+            CREATE TABLE <entidade_entidades2> (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                <entidade>_id INTEGER NOT NULL,
+                <entidade2>_id INTEGER NOT NULL,
+
+                created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                
+                FOREIGN KEY (<entidade>_id) REFERENCES <entidade>(id),
+                FOREIGN KEY (<entidade2>_id) REFERENCES <entidade2>(id)
+            );
+        SQL
+    end
+
+    def down
+        execute <<-SQL
+            DROP TABLE IF EXISTS <entidade_entidades2>;
+        SQL
+    end
+end
+```
+
+`(1,n)`
+```
+class Create<Entidades> < ActiveRecord::Migration[7.1]
+    def up
+        execute <<-SQL
+          CREATE TABLE <entidades> (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username VARCHAR(50) NOT NULL UNIQUE,
+
+            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+          );
+        SQL
+    end
+
+    def down
+        execute <<-SQL
+            DROP TABLE IF EXISTS <entidades>;
+        SQL
+    end
+end
+```
+```
+class Create<Entidades2> < ActiveRecord::Migration[7.1]
+    def up
+        execute <<-SQL
+            CREATE TABLE <entidades2> (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title VARCHAR(255) NOT NULL
+                <entidade_id> INTEGER,
+
+                created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+                FOREIGN KEY (<entidade>_id) REFERENCES <entidade>(id)
+            )
+        SQL
+        end
+    end
+    def down
+        execute <<-SQL
+            DROP TABLE IF EXISTS <entidades>;
+        SQL
     end
 end
 ```
@@ -326,40 +463,12 @@ end
 <% end %>
 ``` 
 
-# Codificar migração para relações em banco
-
-`./db/migrate/<version-tamanho-14>_<create_<entidade1_entidade2>.rb`
-```
-class Create<Entidade1_Entidades2> < ActiveRecord::Migration[7.1]
-    def up
-        execute <<-SQL
-            CREATE TABLE <entidade1_entidades2> (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                <entidade1>_id INTEGER NOT NULL,
-                <entidade2>_id INTEGER NOT NULL,
-
-                created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                                
-                FOREIGN KEY (<entidade1>_id) REFERENCES <entidade1>(id),
-                FOREIGN KEY (<entidade2>_id) REFERENCES <entidade2>(id)
-            );
-        SQL
-    end
-
-    def down
-        execute <<-SQL
-            DROP TABLE IF EXISTS <entidade1_entidades2>;
-        SQL
-    end
-end
-```
-
 # Modelar relações entre entidades
 
-`./app/models/<entidade1>.rb`
+## (n,n)
+`./app/models/<entidade>.rb`
 ```
-class <entidade1> < ApplicationRecord
+class <entidade> < ApplicationRecord
   has_many :<entidades2>, through: :user_tasks, dependent: :destroy
   has_many :<entidate-relacao>
 end
@@ -367,16 +476,31 @@ end
 `./app/models/<entidade2>.rb`
 ```
 class <Entidade2> < ApplicationRecord
-  belongs_to :<entidade1>
-  has_one :<entidade-relacao>
+  belongs_to :<entidade>
+  has_many :<entidade-relacao>
+  validates :title, presence: true, uniqueness: true
 end
 ```
 `./app/models/<entidade-relacao>.rb`
 ```
-    belongs_to :<entidade1>
+    belongs_to :<entidade>
     belongs_to :<entidade2>
 ```
-VERIFICAR
+
+## (1,n)
+`./app/models/<entidade>.rb`
+```
+class <entidade> < ApplicationRecord
+  has_many :<entidades2>, dependent: :destroy
+end
+```
+`./app/models/<entidade2>.rb`
+```
+class <Entidade2> < ApplicationRecord
+  belongs_to :<entidade>
+  validates :title, presence: true, uniqueness: { scope: :<entidade>_id }    
+end
+```
 
 ### Desbrickar schema.rb caso fique travado em atributos created_at: nil, updated_at: nil
 

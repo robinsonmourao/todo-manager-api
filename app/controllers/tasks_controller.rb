@@ -8,7 +8,8 @@ class TasksController < ApplicationController
     def index
         if session[:user_id]
             @user = User.find(session[:user_id])
-            @tasks = @user.user_tasks.map(&:task)
+            Rails.logger.info("######### #{@user.username}")
+            @tasks = current_user.tasks
         else
             redirect_to login_path, notice: "Faça login apra acessar suas tasks!"
         end
@@ -24,10 +25,10 @@ class TasksController < ApplicationController
     def create
 
         @task = Task.new(task_params)
+        @task.user_id = current_user.id
+        
         if @task.save
             user = User.find_by(id: session[:user_id])
-            @user_tasks = UserTask.new(user_id: current_user.id, task_id: @task.id)
-            @user_tasks.save
             redirect_to tasks_path, notice: "Task foi criada."
         else
             @notice = "Não foi possivel salvar a tarefa!"
@@ -50,13 +51,10 @@ class TasksController < ApplicationController
     def destroy
 
         @task = Task.find(params[:id])
-        @user_tasks = UserTask.find_by(task_id: @task.id)
         
-        if @user_tasks && @task
+        if @task
 
-            @user_tasks.destroy
             @task.destroy
-
             redirect_to tasks_path, notice: "Task foi destruída."
         else
             @notice = "Não foi possivel excluir a associação entre user e task"

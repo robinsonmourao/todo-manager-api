@@ -4,6 +4,8 @@ class SessionsController < ApplicationController
     # Sessions não estão sendo brickadas do banco de dados, 
     # sugestao, criar uma colula booleana para setar sessao como ativa ou não
 
+    # Sessions não estão tendo validade de 30 minutos
+
     def new
         @session = Session.new
     end
