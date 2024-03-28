@@ -4,8 +4,8 @@
         <li>
             <br>
             <div>
-                <strong>ID:</strong> <%= task.id %>
-                <strong>Titulo:</strong> <%= task.title %><br>
+                <strong class="task-id">ID:</strong> <span class="task-content"><%= task.id %></span>
+                <strong class="task-title">Titulo:</strong> <span class="task-content"><%= task.title %></span><br>
 
                 <span style="display: inline-block;"> 
                     <%= link_to task_path(task) do %>

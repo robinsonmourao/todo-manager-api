@@ -13,9 +13,13 @@
 
   <body class="body-background">
     <%= render "shared/header" %>
-    <% if notice.present? %>
-      <div class="notification is-link is-light><%= notice %></div>
-    <% end %>
+    
+    <div class=div-notice>
+      <% if flash[:notice] %>
+        <div id="notice"><%= flash[:notice] %></div>
+      <% end %>
+    </div>
+    
     <div class="container">
       <%= yield %>
     </div>

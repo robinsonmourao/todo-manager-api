@@ -45,3 +45,21 @@
     display: grid;
     justify-content: center;
 }
+.task-id, .task-title, .task-content {
+    color: black;
+}
+.div-notice{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 5px;
+    background-color: red;
+    margin: 0 auto;
+}
+#notice{
+    font-weight: bold;
+    color: white;
+}
