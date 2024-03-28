@@ -16,10 +16,7 @@ class UsersController < ApplicationController
         if @user.save
             redirect_to tasks_path, notice: "Seja bem vindo!"
         else
-            # Se houver erro de validação devido ao nome de usuário duplicado
-            if @user.errors[:username].include?("has already been taken")
-              flash[:error] = "Nome de usuário já está em uso. Por favor, escolha outro."
-            end
+            flash[:error] = "Nome de usuário já está em uso. Por favor, escolha outro."
             render 'new'
         end
     end

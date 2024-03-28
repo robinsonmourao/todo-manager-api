@@ -1,9 +1,5 @@
 class TasksController < ApplicationController
     before_action :require_login
-    # before_action :set_task, only: [:show, :edit, :update, :destroy]
-
-    # e as tarefas estão sendo criadas de maneira geral, ou seja, 
-    # task criada no userA impossibilitará cirar outra com mesmo title mesmo logado com userB
 
     def index
         if session[:user_id]
@@ -26,7 +22,7 @@ class TasksController < ApplicationController
 
         @task = Task.new(task_params)
         @task.user_id = current_user.id
-        
+
         if @task.save
             user = User.find_by(id: session[:user_id])
             redirect_to tasks_path, notice: "Task foi criada."

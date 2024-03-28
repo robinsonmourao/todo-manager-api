@@ -19,8 +19,7 @@
                 </span>
                 <span style="display: inline-block;"> 
                     <%= form_with(url: task_path(task), method: :delete, data: { confirm: "Tem certeza que deseja excluir esta tarefa?" }) do |form| %>
-                        <%= form.submit "Excluir tarefa" %> 
-                        <%# https://www.youtube.com/watch?v=QcaSdsXtdvo %>
+                        <%= form.submit "Excluir tarefa" %>
                     <% end %>
                 </span>
             
