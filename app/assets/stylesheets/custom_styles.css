@@ -44,22 +44,27 @@
 .form-session-textbox{
     display: grid;
     justify-content: center;
+    padding-top: 20px;
 }
 .task-id, .task-title, .task-content {
     color: black;
 }
 .div-notice{
     display: flex;
+
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 40%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 10);
+
     justify-content: center;
     align-items: center;
-    width: 30%;
-    border: 1px solid rgb(0, 0, 0);
+    width: 25%;
     border-radius: 10px;
-    padding: 5px;
-    background-color: red;
+    background-color: rgb(252, 70, 70);
     margin: 0 auto;
 }
 #notice{
     font-weight: bold;
-    color: white;
+    color: rgb(32, 32, 32);
 }

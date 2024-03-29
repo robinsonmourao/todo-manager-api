@@ -1,9 +1,5 @@
 <h2>Iniciar nova Sessão </h2>
 
-<% if @notice.present? %>
-    <div class="notification is-link is-light"><%= @notice %></div>
-<% end %>
-
 <%= form_with(model: @session, url: login_send_path, method: :post) do |form| %>
     <div class="form-session-textbox">
 
