@@ -16,8 +16,8 @@ class UsersController < ApplicationController
         if @user.save
             redirect_to tasks_path, notice: "Seja bem vindo!"
         else
-            flash[:error] = "Nome de usuário já está em uso. Por favor, escolha outro."
-            render 'new'
+            @notice = "Nome de usuário já está em uso. Por favor, escolha outro."
+            render :new
         end
     end
 

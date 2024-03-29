@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :tasks, only: [:show, :new, :create, :destroy]
   resources :users, only: [:edit]
   resources :user_tasks, only: [:create, :destroy]
+  # resources :sessions, only: [:destroy]
   
   root to: "home#index"
 

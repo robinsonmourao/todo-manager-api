@@ -5,7 +5,7 @@ class CreateSessions < ActiveRecord::Migration[7.1]
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER NOT NULL,
                 token VARCHAR(255) NOT NULL,
-                expires_at TIMESTAMP NOT NULL,
+                expires_at TIMESTAMP,
 
                 created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

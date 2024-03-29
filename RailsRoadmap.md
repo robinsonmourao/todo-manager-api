@@ -514,6 +514,29 @@ rails generate migration Create<Entidade> <nomeColuna:string> <nomeColuna:string
 resources :<entidades>, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 ``` 
 
+### Feedback das açôes realizadas
+
+```
+<div class=div-notice>
+    <% if flash[:notice] %>
+        <div id="notice"><%= flash[:notice] %></div>
+    <% end %>
+</div>
+```
+
+### Apontador geral para current_user
+
+`app/controllers/application_controller.rb`
+```
+helper_method :current_user
+    
+private
+
+def current_user
+    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+end
+```
+
 # Ou manualmente:
 
 ``` 
@@ -529,3 +552,7 @@ get "/movie/:id/update", to: "movies#update"
 ```
 PRAGMA table_info(<nome-tabela>);
 ```
+
+# variaveis instanciadas com '@'
+
+`São variaveis de instancia, e so sao validas enquanto seu metodo pai está em execução`

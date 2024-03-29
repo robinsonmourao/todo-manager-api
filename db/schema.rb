@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_34_560003) do
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "token", limit: 255, null: false
-    t.datetime "expires_at", precision: nil, null: false
+    t.datetime "expires_at", precision: nil
     t.datetime "created_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
   end
