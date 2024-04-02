@@ -43,6 +43,130 @@
 
 ---
 
+# ToDo-API
+
+
+
+## 🛠 Tech Stack
+
+To make this project run you will need to have the following items installed: 
+
+* Ruby 3.1.4p223
+* Rails 7.1.3.2
+* SQLite 3.22.0
+* Rspec 3.13
+
+## :rocket: Get ready
+
+### Clone the repository:
+
+```
+git clone https://github.com/robinsonmourao/todo-manager-api.git
+```
+### Execute the commands of Ruby programming language installer:
+```
+Download the following file:
+`https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.4.tar.gz`
+`tar -xzvf ruby-3.1.4.tar.gz`
+`cd ruby-3.1.4`
+`./configure`
+`make`
+`sudo make install`
+`ruby -v`
+```
+### Install Rails
+```
+sudo apt-get install -y build-essential
+```
+```
+sudo gem install rails
+```
+
+### Install Bundler
+```
+sudo gem install bundler
+```
+
+### Execute the following comands:
+
+```
+bundle install
+```
+```
+rails db:migrate
+```
+```
+rails db:seed
+```
+### Execute command to install SQLite
+
+```
+sudo apt-get install sqlite3
+```
+
+## :arrow_forward: Running
+
+### Change directory to where you have cloned OxeanFlix project
+
+> cd /your-root-directory/.../your-project-folder-name-here <br>
+
+### Execute start rails application command:
+
+```
+rails s
+```
+
+### To access the API, you should get the following address
+
+[http://localhost:3000/](http://localhost:3000/)
+
+## Create your user
+
+Insert `name`, `Email` and `Password` then login with it
+
+## :gear: Running tests
+
+### Execute RSpec install commands:
+
+On Windows, add this command on ./gemfile:
+```
+gem 'rspec-rails'
+````
+or on Linux:
+```
+echo "gem 'rspec-rails'" >> Gemfile
+```
+```
+gem install rspec
+```
+```
+gem install bundler
+```
+```
+bundle update rspec-rails
+```
+To run model tests:
+```
+rspec spec/models
+```
+To run route tests:
+```
+rspec spec/routing
+```
+
+## How about Database?
+
+Well, you can access the SQLite3 database just get in root project directory './' then insert this following command:
+```
+sqlite3 storage/development.sqlite3
+```
+## :closed_book:Documentation
+
+* Get more information about [Ruby](https://www.ruby-lang.org/en/documentation/)<br>
+* Get more information about [Ruby on Rails](https://rubyonrails.org/)<br>
+* Get more information about [SQLite3](https://www.sqlite.org/docs.html)<br>
+* Get more information about [RSpec](https://rspec.info/documentation/)
+
 # Autor
 
 <table>
@@ -53,3 +177,6 @@
 		</a></br>
     </td>
 </table>
+
+## :mailbox: Contact us
+* Contact us by email [Marino Hohenheim](mailto:intmarinoreturn0@gmail.com)
