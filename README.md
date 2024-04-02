@@ -13,7 +13,7 @@
 - A autenticação é gerenciada por sessões, permitindo que os usuários permaneçam autenticados enquanto navegam pela aplicação.
 
 ## Gerenciamento de Tarefas:
-- Cada usuário pode criar, visualizar, atualizar e excluir suas próprias tarefas.
+- Cada usuário cadastrado pode criar, visualizar, atualizar e excluir suas próprias tarefas.
 - Cada tarefa possui um título e uma descrição, permitindo uma organização eficiente das atividades.
 
 ## Associação de Usuários e Tarefas:
@@ -28,24 +28,6 @@
 - SQLite: Banco de dados relacional para armazenamento de dados.
 
 ---
-
-# Instalação
-1. Clone o repositório: `git clone https://github.com/seu-usuario/todo-manager.git`
-2. Instale as dependências: `bundle install`
-3. Crie o banco de dados e execute as migrações: `rails db:create && rails db:migrate`
-4. Inicie o servidor Rails: `rails server`
-5. Acesse a aplicação em seu navegador: `http://localhost:3000`
-
----
-
-# Contribuição
-- Se você encontrar algum problema ou tiver sugestões de melhoria, sinta-se à vontade para abrir uma issue ou enviar um pull request.
-
----
-
-# ToDo-API
-
-
 
 ## 🛠 Tech Stack
 
@@ -76,10 +58,12 @@ Download the following file:
 ```
 ### Install Rails
 ```
-sudo apt-get install -y build-essential
-```
-```
 sudo gem install rails
+```
+
+### Install libyaml-dev to avoid bundler compilation problems
+```
+sudo apt-get install libyaml-dev
 ```
 
 ### Install Bundler
@@ -122,39 +106,11 @@ rails s
 
 ## Create your user
 
-Insert `name`, `Email` and `Password` then login with it
+Insert `Username`, `Email` and `Password` then login with the same `Email` and `Password`.
 
 ## :gear: Running tests
 
-### Execute RSpec install commands:
-
-On Windows, add this command on ./gemfile:
-```
-gem 'rspec-rails'
-````
-or on Linux:
-```
-echo "gem 'rspec-rails'" >> Gemfile
-```
-```
-gem install rspec
-```
-```
-gem install bundler
-```
-```
-bundle update rspec-rails
-```
-To run model tests:
-```
-rspec spec/models
-```
-To run route tests:
-```
-rspec spec/routing
-```
-
-## How about Database?
+### How about Database?
 
 Well, you can access the SQLite3 database just get in root project directory './' then insert this following command:
 ```
