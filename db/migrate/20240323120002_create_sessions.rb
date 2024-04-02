@@ -3,6 +3,7 @@ class CreateSessions < ActiveRecord::Migration[7.1]
         execute <<-SQL
             CREATE TABLE sessions (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                active BOOLEAN DEFAULT 1,
                 user_id INTEGER NOT NULL,
                 token VARCHAR(255) NOT NULL,
                 expires_at TIMESTAMP,
