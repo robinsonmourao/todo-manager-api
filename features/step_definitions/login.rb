@@ -4,13 +4,13 @@ Given('que eu tenha cadastrado previamente um usuário.') do |table|
     @password = table.rows_hash['password']
     visit('http://127.0.0.1:3000/login')
 
-    @login = LoginPage.new
-    @login.load
+    # @login_page = LoginPage.new
+    login.load
 end
 
 When('eu faço login.') do
 
-    @login.login('bob.info.guaratiba@gmail.com', '12345678')
+    login.login('bob.info.guaratiba@gmail.com', '12345678')
     # fill_in 'session_email', with: @email
     # fill_in 'session_password', with: @password
     # # click_button "Login"

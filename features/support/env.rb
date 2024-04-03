@@ -4,9 +4,11 @@ require 'capybara/rspec/matchers'
 require 'selenium-webdriver'
 require 'rspec'
 require 'site_prism'
+require_relative 'page_helper.rb' # Adicionado após criar page_helper.rb
 
 World(Capybara::DSL)
 World(Capybara::RSpecMatchers)
+World(Pages) # Adicionado após criar page_helper.rb
 
 Capybara.register_driver :selenium do |app|
   options = Selenium::WebDriver::Chrome::Options.new

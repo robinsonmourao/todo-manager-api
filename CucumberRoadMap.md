@@ -49,9 +49,11 @@ require 'capybara/rspec/matchers'
 require 'selenium-webdriver'
 require 'rspec'
 require 'site_prism'
+require_relative 'page_helper.rb' # Adicionado após criar page_helper.rb
 
 World(Capybara::DSL)
 World(Capybara::RSpecMatchers)
+World(Pages) # Adicionado após criar page_helper.rb
 
 Capybara.register_driver :selenium do |app|
     options = Selenium::WebDriver::Chrome::Options.new
@@ -145,7 +147,7 @@ Then('eu verifico se consegui logar.') do
 end
 ```
 
-# Criar gatilhos after e before
+# Criar gatilhos
 
 ```
 touch ./features/support/hooks.rb
@@ -155,5 +157,68 @@ After '@user_logout' do
 
     click_button "Logout"
     sleep(2)
+end
+```
+# Criar Helper para pages
+
+```
+torch ./features/support/page_helper.rb
+```
+```
+Dir[File.join(File.dirname(__FILE__), '../pages/*_page.rb')].each { |file| require file }
+                    
+module Pages
+    def login
+        @login ||= LoginPage.new
+    end
+end
+```
+
+# Criar modelos pages
+
+```
+torch ./features/pages/login_page.rb
+```
+```
+class LoginPage < SitePrism::Page
+
+    set_url 'http://127.0.0.1:3000/login'
+
+    element :email_text_box, '#session_email'
+    element :password_text_box, '#session_password'
+    element :login_button, '#user-login-button'
+
+    def login (email, password)
+
+        email_text_box.set email
+        password_text_box.set password
+        login_button.click
+    end
+end
+```
+
+## Chamada encapsulada do modelo Page
+
+```
+Given('que eu tenha cadastrado previamente um usuário.') do |table|
+    ...
+    @login_page = LoginPage.new
+    @login_page
+end
+When('eu faço login.') do
+    @login_page.login('bob.info.guaratiba@gmail.com', '12345678')
+end
+```
+
+## Instância com helper
+
+```
+Given('que eu tenha cadastrado previamente um usuário.') do |table|
+    ...
+    # Remover '@login_page = LoginPage.new' se for utilizar pages_helper.rb
+    login_page # Removido '@'
+end
+When('eu faço login.') do
+    login_page.login('bob.info.guaratiba@gmail.com', '12345678') # Removido '@'
 end
 ```
