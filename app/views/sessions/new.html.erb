@@ -8,9 +8,8 @@
 
         <%= form.label :password %>
         <%= form.password_field :password, placeholder: "Senha" %>
+
+        <%= form.submit "Login", id: "user-login-button" %>
     </div>
 
-    <div>
-        <%= form.submit "Logar" %>
-    </div>
     <% end %>
