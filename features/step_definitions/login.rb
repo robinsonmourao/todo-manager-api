@@ -10,13 +10,13 @@ end
 
 When('eu faço login.') do
 
-    @login.login('bob.info.guaratiba@gmail.com')
-#     fill_in 'session_email', with: @email
-#     fill_in 'session_password', with: @password
-#     # click_button "Login"
-#     find("#user-login-button").click
-#     sleep(1)
-# end
+    @login.login('bob.info.guaratiba@gmail.com', '12345678')
+    # fill_in 'session_email', with: @email
+    # fill_in 'session_password', with: @password
+    # # click_button "Login"
+    # find("#user-login-button").click
+    # sleep(1)
+end
 
 Then('eu verifico se consegui logar.') do
 

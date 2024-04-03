@@ -1,17 +1,22 @@
 # Preparar ambiente
 ## Install Cucumber
 
-`mkdir cucumber_tests`
-`cd cucumber_tests`
-`sudo gem install cucumber`
+`After create a testing branch:`
+```
+sudo gem install cucumber
+```
 
 # Iniciar Cucumber
 
-`cucumber --init`
+```
+cucumber --init
+```
 
 # Instalar gems necessárias
 
-`mkdir <pasta-root-de-testes>/Gemfile`
+```
+touch ./Gemfile
+```
 ```
 source 'http://rubygems.org'
 
@@ -25,17 +30,25 @@ gem 'site_prism'
 gem 'fastri'
 gem 'rcodetools' 
 ```
-`bundle install --gemfile=<pasta-root-de-testes>/Gemfile`
+```
+bundle install
+```
 
 # Configurando enviroment
 
-`cd <pasta-root-de-testes>/support/env.rb`
+```
+touch features/support/env.rb
+```
+```
+cd features/support/env.rb
+```
 ```
 require 'capybara'
 require 'capybara/dsl'
 require 'capybara/rspec/matchers'
 require 'selenium-webdriver'
 require 'rspec'
+require 'site_prism'
 
 World(Capybara::DSL)
 World(Capybara::RSpecMatchers)
@@ -55,15 +68,11 @@ Capybara.configure do |config|
 end
 ```
 
-# Instale RSpec
+# Verbalização BDD em sintaxe Gherkin
 
 ```
-gem install rspec
+touch ./features/specs/login.feature
 ```
-
-# Crie a funcionalidade login
-
-`mkdir <pasta-root-de-testes>/features/specs/login.feature`
 ```
 # language: en
 
@@ -86,8 +95,10 @@ Scenario: Fazer login com sucesso.
 ```
 cucumber
 ```
-cole o esqueleto no seguinte arquivo:
-`mkdir <pasta-root-de-testes>/features/step_definitions/[login.rb]`
+`cole o esqueleto gerado, no seguinte arquivo:`
+```
+touch ./features/step_definitions/login.rb
+```
 ```
 Given('que eu tenha cadastrado previamente um usuário.') do |table|
   
@@ -136,7 +147,9 @@ end
 
 # Criar gatilhos after e before
 
-`/features/support/[hooks.rb]`
+```
+touch ./features/support/hooks.rb
+```
 ```
 After '@user_logout' do
 
