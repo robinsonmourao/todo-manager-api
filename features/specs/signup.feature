@@ -5,6 +5,7 @@ Feature: Cadastrar usuário
 -Eu como usuário.
 -Quero me cadastrar no sistema.
 
+@user_logout
 Scenario: Fazer cadastro de usuário com sucesso
 
     Given que eu acesse o sistema pela primeira vez

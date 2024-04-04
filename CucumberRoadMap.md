@@ -236,3 +236,62 @@ After '@user_logout' do
     sleep(2)
 end
 ```
+
+# Configuração de environment
+
+## Cucumber.yml
+```
+torch ./cucumber.yml
+```
+```
+## YAML Templates
+---
+
+default:  -p ci  
+          -p test
+          -p headless
+
+          --publish-quiet
+
+pretty: --format pretty
+ci: --format progress
+test: ENVIRONMENT_TYPE=test
+headless: HEADLESS=headless
+```
+
+## Profiles
+
+```
+torch ./features/support/data/test.yml
+```
+```
+url_name: 'http://127.0.0.1:3000/'
+```
+
+## env.rb
+
+```
+cd ./features/support/
+```
+```
+...
+HEADLESS = ENV['HEADLESS']
+ENVIRONMENT_TYPE = ENV['ENVIRONMENT_TYPE']
+CONFIG = YAML.load_file(File.dirname(__FILE__) +/data/#{ENVIRONMENT_TYPE}.yml")
+
+Capybara.register_driver :selenium do |app|
+    ...
+    if HEADLESS
+      options.add_argument('headless')
+      options.add_argument('disable-gpu')
+    end
+    ...
+end
+```
+
+```
+Capybara.configure do |config|
+    ...
+    config.app_host = CONFIG['url_name']
+end
+```
