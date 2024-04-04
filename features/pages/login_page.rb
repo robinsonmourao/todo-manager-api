@@ -4,7 +4,7 @@ class LoginPage < SitePrism::Page
 
     element :email_text_box, '#session_email'
     element :password_text_box, '#session_password'
-    element :login_button, '#user-login-button'
+    element :login_button, '#login-submit-button'
 
     def login (email, password)
 

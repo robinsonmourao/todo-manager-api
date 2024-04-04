@@ -18,9 +18,9 @@ When('eu faço login.') do
     # sleep(1)
 end
 
-Then('eu acesso a tela de tarefas.') do
+Then('Com usuário de nome {string} logado eu acesso a tela de tarefas.') do |username|
 
     expect(page).to have_current_path('http://127.0.0.1:3000/tasks', url: true)
     @actual_user = find('div[id="notice"]')
-    expect(@actual_user.text).to eql 'Bem-vindo, Robinson!' # alerta de chubamento
+    expect(@actual_user.text).to eql "Bem-vindo, #{username}!"
 end
