@@ -18,7 +18,7 @@ When('eu faço login.') do
     # sleep(1)
 end
 
-Then('eu verifico se consegui logar.') do
+Then('eu acesso a tela de tarefas.') do
 
     expect(page).to have_current_path('http://127.0.0.1:3000/tasks', url: true)
     @actual_user = find('div[id="notice"]')
