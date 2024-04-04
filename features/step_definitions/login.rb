@@ -5,12 +5,12 @@ Given('que eu tenha cadastrado previamente um usuário.') do |table|
     visit('http://127.0.0.1:3000/login')
 
     # @login_page = LoginPage.new
-    login.load
+    login_page_helper.load
 end
 
 When('eu faço login.') do
 
-    login.login('bob.info.guaratiba@gmail.com', '12345678')
+    login_page_helper.login('bob.info.guaratiba@gmail.com', '12345678')
     # fill_in 'session_email', with: @email
     # fill_in 'session_password', with: @password
     # # click_button "Login"
@@ -22,5 +22,5 @@ Then('eu verifico se consegui logar.') do
 
     expect(page).to have_current_path('http://127.0.0.1:3000/tasks', url: true)
     @actual_user = find('div[id="notice"]')
-    # expect(@actual_user.text).to eql 'Bem-vindo, '
+    expect(@actual_user.text).to eql 'Bem-vindo, Robinson!' # alerta de chubamento
 end

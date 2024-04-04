@@ -12,4 +12,4 @@ Scenario: Fazer login com sucesso.
         |email|bob.info.guaratiba@gmail.com|
         |password|12345678|
     When eu faço login.
-    Then eu verifico se consegui logar.
+    Then eu acesso a tela de tarefas.

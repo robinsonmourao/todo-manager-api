@@ -159,20 +159,6 @@ After '@user_logout' do
     sleep(2)
 end
 ```
-# Criar Helper para pages
-
-```
-torch ./features/support/page_helper.rb
-```
-```
-Dir[File.join(File.dirname(__FILE__), '../pages/*_page.rb')].each { |file| require file }
-                    
-module Pages
-    def login
-        @login ||= LoginPage.new
-    end
-end
-```
 
 # Criar modelos pages
 
@@ -210,15 +196,43 @@ When('eu faço login.') do
 end
 ```
 
-## Instância com helper
+## Instância com helper para login
+### Criar Helper para pages
+
+```
+torch ./features/support/page_helper.rb
+```
+```
+Dir[File.join(File.dirname(__FILE__), '../pages/*_page.rb')].each { |file| require file }
+                    
+module Pages
+    def login_page_helper
+        @login ||= LoginPage.new
+    end
+end
+```
+
+### Instância com helper para login
 
 ```
 Given('que eu tenha cadastrado previamente um usuário.') do |table|
     ...
     # Remover '@login_page = LoginPage.new' se for utilizar pages_helper.rb
-    login_page # Removido '@'
+    login_page_helper.load # Removido '@'
 end
 When('eu faço login.') do
-    login_page.login('bob.info.guaratiba@gmail.com', '12345678') # Removido '@'
+    login_page_helper.login('bob.info.guaratiba@gmail.com', '12345678') # Removido '@'
+end
+```
+
+### Instância com helper para tasks
+
+`Alterar gatilho de logout em 'After'`
+```
+After '@user_logout' do
+
+    # click_button "Logout" # old
+    tasks_page_helper.logout
+    sleep(2)
 end
 ```
