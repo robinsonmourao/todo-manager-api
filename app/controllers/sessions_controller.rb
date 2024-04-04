@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
     # Sessions não estão tendo validade de 30 minutos
     # loggout sem estar logado quebra aplicação
     # Se não fizer logout antes de fazer signup, ao fazer signup ele abre as tarefas do usuario anterior
+    # Botoes não sao encontrados pelo cucumber em responsividade menor
 
     def new
         @session = Session.new

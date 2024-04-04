@@ -14,7 +14,22 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-            redirect_to tasks_path, notice: "Seja bem vindo!"
+            if @user.authenticate(params[:user][:password])
+
+                session[:user_id] = @user.id
+
+                @session = Session.new
+                @session.active = true
+                @session[:user_id] = @user.id
+                @session[:token] = "#{@user.id} #{@user.username} #{@user.email} #{@user.password_digest}"
+
+                @session.save
+                @session[:expires_at] = setSessionTime(@session)
+                @session = Session.find_by(user_id: current_user.id)
+                Rails.logger.info("#######, #{@session.inspect}")
+
+                redirect_to tasks_path, notice: "Bem-vindo, #{@user.username}!"
+            end
         else
             @notice = "Nome de usuário já está em uso. Por favor, escolha outro."
             render :new
@@ -26,5 +41,12 @@ class UsersController < ApplicationController
 
     def user_params
         params.require(:user).permit(:username, :email, :password)
+    end
+
+    def setSessionTime(session)
+        
+        expiration = session.created_at + 1.minutes
+        session[:expires_at] = expiration
+        session.save
     end
 end
