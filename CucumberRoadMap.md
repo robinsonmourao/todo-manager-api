@@ -160,7 +160,7 @@ After '@user_logout' do
 end
 ```
 
-# Criar modelos pages
+# Criar modelos pages objects
 
 ```
 torch ./features/pages/login_page.rb
@@ -183,7 +183,7 @@ class LoginPage < SitePrism::Page
 end
 ```
 
-## Chamada encapsulada do modelo Page
+## Chamada encapsulada do modelo Page Objects
 
 ```
 Given('que eu tenha cadastrado previamente um usuário.') do |table|
@@ -197,7 +197,7 @@ end
 ```
 
 ## Instância com helper para login
-### Criar Helper para pages
+### Criar Helper para pages objects
 
 ```
 torch ./features/support/page_helper.rb
@@ -293,5 +293,76 @@ end
 Capybara.configure do |config|
     ...
     config.app_host = CONFIG['url_name']
+end
+```
+
+# Gerar relatório automaticamente
+## Arquivo html
+
+```
+cd ./cucumber.yml
+```
+`Adicione o suport a html`
+```
+...
+html: --format html --out=results/report.html
+```
+`Faça a chamada do html`
+```
+...
+default: -p html
+...
+```
+## Arquivo Helper
+
+```
+torch ./features/support/helper.rb
+```
+```
+require 'fileutils'
+
+# tira screenshot e imbuti no relatorio final
+module Helper
+    def take_screenshot(file_name, result)
+
+        timer_path = Time.now.strftime('%F').to_s
+        file_path = "results/screenshots/test_#{result}/run_#{timer_path}"
+        screenshot = "#{file_path}/#{file_name}.png"
+        page.save_screenshot(screenshot)
+        attach(screenshot, 'image/png', 'Click here')
+    end
+end
+```
+## Adicionar suporte ao arquivo helper via env
+
+```
+...
+require_relative 'helper.rb' # Adicionar após a parte dos screenshots
+...
+```
+
+## Arquivo hooks para engatilhar os screenshots
+
+```
+cd ./features/support/hooks.rb
+```
+```
+World(Helper)
+...
+```
+```
+...
+After do |scenario|
+    scenario_name = scenario.name.gsub(/\s+/, '_').tr('/', '_')
+    scenario_name = scenario.name.delete(',', '')
+    scenario_name = scenario.name.delete('(', '')
+    scenario_name = scenario.name.delete(')', '')
+    scenario_name = scenario.name.delete('#', '')
+
+    if scenario.failed?
+        take_screenshot(scenario_name.downcase, 'failed')
+    else
+        take_screenshot(scenario_name.downcase, 'passed')
+    end
 end
 ```

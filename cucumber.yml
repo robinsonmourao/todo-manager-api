@@ -4,6 +4,7 @@
 default:  -p ci  
           -p test
           -p headless
+          -p html
 
           --publish-quiet
 
@@ -11,3 +12,4 @@ pretty: --format pretty
 ci: --format progress
 test: ENVIRONMENT_TYPE=test
 headless: HEADLESS=headless
+html: --format html --out=results/report.html

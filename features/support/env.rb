@@ -5,6 +5,7 @@ require 'selenium-webdriver'
 require 'rspec'
 require 'site_prism'
 require_relative 'page_helper.rb' # Adicionado após criar page_helper.rb
+require_relative 'helper.rb' # Adicionar após a parte dos screenshots
 
 World(Capybara::DSL)
 World(Capybara::RSpecMatchers)
