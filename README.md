@@ -49,8 +49,8 @@ git clone https://github.com/robinsonmourao/todo-manager-api.git
 ```
 Download the following file:
 `https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.4.tar.gz`
-`tar -xzvf ruby-3.1.4.tar.gz`
-`cd ruby-3.1.4`
+`tar -xzvf ./Downloads/ruby-3.1.4.tar.gz`
+`cd ./Downloads/ruby-3.1.4`
 `./configure`
 `make`
 `sudo make install`
