@@ -22,8 +22,7 @@ class UsersController < ApplicationController
         redirect_to tasks_path, notice: "Bem-vindo, #{@user.username}!"
       end
     else
-      @notice = 'Nome de usuário já está em uso. Por favor, escolha outro.'
-      render :new
+      redirect_to new_user_path, notice: 'Nome de usuário já está em uso. Por favor, escolha outro.'
     end
   end
 
