@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include LoggerHelper
+
   helper_method :current_user, :current_session
 
   private
