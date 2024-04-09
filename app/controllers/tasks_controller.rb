@@ -3,7 +3,6 @@ class TasksController < ApplicationController
 
   def index
     if session[:user_id]
-      @user = User.find(session[:user_id])
       @tasks = current_user.tasks
     else
       redirect_to login_path, notice: 'Faça login para acessar suas tasks!'

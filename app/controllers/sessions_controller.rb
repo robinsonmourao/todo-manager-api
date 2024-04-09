@@ -10,24 +10,11 @@ class SessionsController < ApplicationController
   end
 
   def login
-    user = User.find_by(email: params[:session][:email])
-
-    if user
-      if user.authenticate(params[:session][:password])
-
-        session[:user_id] = user.id
-
-        @session = Session.new
-        @session.active = true
-        @session[:user_id] = user.id
-        @session[:token] = "#{user.id} #{user.username} #{user.email} #{user.password_digest}"
-
-        @session.save
-        @session[:expires_at] = session_time
-        @session = Session.find_by(user_id: current_user.id)
-        Rails.logger.info("#######, #{@session.inspect}")
-
-        redirect_to tasks_path, notice: "Bem-vindo, #{user.username}!"
+    @user = User.find_by(email: params[:session][:email])
+    if @user
+      if @user.authenticate(params[:session][:password])
+        store_session(@user)
+        redirect_to tasks_path, notice: "Bem-vindo, #{@user.username}!"
       else
         @notice = 'Senha inválida!'
         render :new
@@ -39,11 +26,16 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    @session = Session.find_by(user_id: current_user.id)
-    if @session
-      Rails.logger.info("#######, #{@session.inspect}")
-      Rails.logger.info("#######, #{@session.inspect}")
+    # ja que ele busca pelo id de usuário e as sessoes nao sao destruidas,
+    # a busca sempre vai retornar a primeira sessão do usuário atual
+    db_session = Session.find_by(user_id: current_user.id)
+
+    if db_session
       session[:user_id] = nil
+
+      db_session[:active] = 0
+      db_session.save
+
       redirect_to root_path, notice: 'Você foi desconectado!'
     else
       redirect_to tasks_path, notice: 'Sessão não encontrada!'
@@ -54,11 +46,5 @@ class SessionsController < ApplicationController
 
   def session_params
     params.require(:session).permit(:user_id, :expires_at)
-  end
-
-  def session_time
-    expiration = @session.created_at + 1.minutes
-    @session[:expires_at] = expiration
-    @session.save
   end
 end
