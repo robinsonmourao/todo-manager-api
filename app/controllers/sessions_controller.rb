@@ -11,6 +11,9 @@ class SessionsController < ApplicationController
 
   def login
     @user = User.find_by(email: params[:session][:email])
+
+    check_previous_sessions(@user)
+
     if @user
       if @user.authenticate(params[:session][:password])
         store_session(@user)
@@ -26,17 +29,24 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    # ja que ele busca pelo id de usuário e as sessoes nao sao destruidas,
-    # a busca sempre vai retornar a primeira sessão do usuário atual
-    db_session = Session.find_by(user_id: current_user.id)
+    # Suporta uma sessão simultaneamente
+    # Ao sair sem deslogar a sessão fica no banco como ativa
+    # Fazer algum esquema que identifique as sessoes expiradas e set db_session[:active] = 0
+    db_session = Session.find_by(user_id: current_user.id, active: 1)
+    if db_session && db_session.active == true
 
-    if db_session
       session[:user_id] = nil
 
       db_session[:active] = 0
-      db_session.save
+print(db_session.inspect)
 
-      redirect_to root_path, notice: 'Você foi desconectado!'
+      begin
+        db_session.save!
+        redirect_to root_path, notice: 'Você foi desconectado!'
+      rescue StandardError => e
+        flash[:notice] = "Erro ao salvar a sessão: #{e.message}"
+        redirect_to root_path
+      end
     else
       redirect_to tasks_path, notice: 'Sessão não encontrada!'
     end

@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   include LoggerHelper
 
-  helper_method :current_user, :current_session
+  helper_method :current_user
+
+  SESSION_EXPIRATION_TIME = 1.minutes
 
   private
 
@@ -26,8 +28,16 @@ class ApplicationController < ActionController::Base
   end
 
   def store_session_remaning_time(db_session)
-    expiration = db_session.created_at + 1.minutes
+    expiration = db_session.created_at + SESSION_EXPIRATION_TIME
     db_session[:expires_at] = expiration
+    db_session.save
+  end
+
+  def check_previous_sessions(user)
+    db_session = Session.find_by(user_id: user.id, active: 1)
+    return unless db_session
+
+    db_session[:active] = 0
     db_session.save
   end
 end
