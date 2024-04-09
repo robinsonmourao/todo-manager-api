@@ -1,45 +1,46 @@
 <div class="header-container">
-    <!-- Hero head: will stick at the top -->
-    <div class="hero-head">
-      <header class="navbar">
-        <div class="container">
-          <div class="navbar-brand">
-            <span class="navbar-burger" data-target="navbarMenuHeroC">
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
-          </div>
-          <div id="navbarMenuHeroC" class="navbar-menu">
-            <div class="navbar-end">
-              <%= link_to "Sign-Up", new_user_path, class: "button" %>
-              <%= link_to "Log-in", login_path, class: "button is-success" %>
-              <%= button_to "Logout", logout_path, method: :delete, class: "button", form: { id: 'logout-form', class: 'd-none' } %>
-            </div>
+  <!-- Hero head: will stick at the top -->
+  <div class="hero-head">
+    <header class="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <span class="navbar-burger" data-target="navbarMenuHeroC">
+          </span>
+        </div>
+        <div id="navbarMenuHeroC" class="navbar-menu">
+        <div id="sessionTimer">Tempo restante: </div>
+          <div class="navbar-end">
+            <%= link_to "Sign-Up", new_user_path, class: "button" %>
+            <%= link_to "Log-in", login_path, class: "button is-success" %>
+            <%= button_to "Logout", logout_path, method: :delete, class: "button", form: { id: 'logout-form', class: 'd-none' } %>
           </div>
         </div>
-      </header>
-    </div>
-
-    <!-- Hero content: will be in the middle -->
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <p class="title">
-          Quiabo manager 1.0
-        </p>
       </div>
-    </div>
+    </header>
+  </div>
 
-    <!-- Hero footer: will stick at the bottom -->
-    <div class="hero-foot">
-      <nav class="tabs is-boxed is-fullwidth">
-        <div class="container">
-          <ul>
-            <li class="is-active"><%= link_to "Home", root_path %></li>
-            <li><%= link_to "Listar minhas tasks", tasks_path %></li>
-            <li><%= link_to "Criar uma nova task", new_task_path %></li>
-          </ul>
-        </div>
-      </nav>
+  <!-- Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <p class="title">
+        Quiabo manager 1.0
+      </p>
     </div>
+  </div>
+
+  <!-- Hero footer: will stick at the bottom -->
+  <div class="hero-foot">
+    <nav class="tabs is-boxed is-fullwidth">
+      <div class="container">
+        <ul>
+          <li class="<%= 'is-active' if current_page?(root_path) || current_page?(new_user_path) || current_page?(login_path) %>">
+            <%= link_to "Home", root_path %></li>
+          <li class="<%= 'is-active' if current_page?(tasks_path) %>">
+            <%= link_to "Listar minhas tasks", tasks_path %></li>
+          <li class="<%= 'is-active' if current_page?(new_task_path) %>">
+            <%= link_to "Criar uma nova task", new_task_path %></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 </div>
