@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
-  SESSION_EXPIRATION_TIME = 1.minutes
+  SESSION_EXPIRATION_TIME = 30.minutes
 
   private
 
@@ -39,5 +39,24 @@ class ApplicationController < ActionController::Base
 
     db_session[:active] = 0
     db_session.save
+
+    check_expired_sessions
+  end
+
+  def check_expired_sessions
+    active_sessions = Session.where(active: 1)
+
+    return unless active_sessions.any?
+
+    active_sessions.each do |temp_session|
+      unless temp_session.expires_at > Time.now
+
+        session[:user_id] = nil
+        temp_session[:active] = 0
+        temp_session.save
+
+        redirect_to root_path, notice: 'Sua sessão expirou! Faça login novamente para ter acesso a tarefas.'
+      end
+    end
   end
 end
