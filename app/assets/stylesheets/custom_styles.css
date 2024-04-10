@@ -22,16 +22,20 @@
 .body-background{
     background-color: #e9e9e9;
 }
-.footer{
-    display: flex;
-    justify-content: center;
-    background-color: #e9e9e9;
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e9e9e9;
+  height: 100px;
 }
 .header-container {
     width: 100%;
     background-image: url('logo.png');
     background-repeat: repeat-x;
     background-color: #fca7ff;
+    border-radius: 20px;
 }
 .form-user-textbox{
     display: grid;
@@ -67,4 +71,18 @@
 #notice{
     font-weight: bold;
     color: rgb(32, 32, 32);
+}
+#sessionTimer{
+  opacity: 0.4;
+}
+header.navbar {
+  position: fixed; /* Fixa o header na posição */
+  padding-top: 1%;
+  width: 100%; /* Define a largura do header como 100% da largura da tela */
+  background-color: transparent; /* Define o fundo do header como transparente */
+}
+.button{
+  border-radius: 10px;
+  font-weight: bold;
+  border: none;
 }
