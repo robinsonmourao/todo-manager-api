@@ -1,88 +1,129 @@
-.task-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
+html{
+  background-image: url('backgrounds/site-background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat-y;
 }
-.task-list li {
-    width: calc(30% - 20px);
-    margin-bottom: 20px;
-    margin-right: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: transform 0.3s ease;
-    background-color: #c7f464;
-}
-.task-list li:hover {
-    transform: scale(1.1);
-    z-index: 1;
-}
-.body-background{
-    background-color: #e9e9e9;
-}
-.footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #e9e9e9;
-  height: 100px;
+body {
+  padding: 5px;
 }
 .header-container {
-    width: 100%;
-    background-image: url('logo.png');
-    background-repeat: repeat-x;
-    background-color: #fca7ff;
-    border-radius: 20px;
-}
-.form-user-textbox{
-    display: grid;
-    justify-content: center;
-}
-.form-task-textbox{
-    display: grid;
-    justify-content: center;
-}
-.form-session-textbox{
-    display: grid;
-    justify-content: center;
-    padding-top: 20px;
-}
-.task-id, .task-title, .task-content {
-    color: black;
-}
-.div-notice{
-    display: flex;
-
-    position: fixed;
-    left: 50%;
-    transform: translate(-50%, 40%);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 10);
-
-    justify-content: center;
-    align-items: center;
-    width: 25%;
-    border-radius: 10px;
-    background-color: rgb(252, 70, 70);
-    margin: 0 auto;
-}
-#notice{
-    font-weight: bold;
-    color: rgb(32, 32, 32);
-}
-#sessionTimer{
-  opacity: 0.4;
+  width: 100%;
+  background-image: url('logo.png');
+  background-repeat: repeat-y;
+  background-size: cover;
+  border-end-start-radius: 40px;
+  border-end-end-radius: 40px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 10);
 }
 header.navbar {
-  position: fixed; /* Fixa o header na posição */
+  position: fixed;
   padding-top: 1%;
-  width: 100%; /* Define a largura do header como 100% da largura da tela */
-  background-color: transparent; /* Define o fundo do header como transparente */
+  width: 100%;
+  background-color: transparent;
 }
 .button{
   border-radius: 10px;
   font-weight: bold;
   border: none;
+}
+
+
+.div-notice{
+  display: flex;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 40%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 10);
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  border-radius: 10px;
+  background-color: rgb(252, 70, 70);
+  margin: 0 auto;
+}
+#notice{
+  font-weight: bold;
+  color: rgb(32, 32, 32);
+}
+
+
+.container-yield{
+  height: 400px;
+  background-image: url('body-background.png');
+  background-repeat: round;
+  border-radius: 15px;
+}
+.container-user-form-screen{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 70%;
+  border-radius: 15px;
+}
+.left-side-signup{
+  background-image: url('user-signup-left-side.jpg');
+  width: 300px;
+  background-repeat: round;
+  border-radius: inherit;
+}
+.right-side-signup{
+  width: 300px;
+  border-radius: inherit;
+}
+.form-user-textboxes{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.form-user-textboxes label {
+  padding-right: 10px;
+}
+.form-user-textboxes input[type="text"], input[type="password"] {
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+
+.task-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+.task-list li {
+  width: calc(30% - 20px);
+  margin-bottom: 20px;
+  margin-right: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+  background-color: #c7f464;
+}
+.task-list li:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+.form-task-textbox{
+  display: grid;
+  justify-content: center;
+}
+.task-id, .task-title, .task-content {
+  color: black;
+}
+
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  height: 100px;
+}
+#sessionTimer{
+  opacity: 0.4;
 }

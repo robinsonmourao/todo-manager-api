@@ -1,7 +1,8 @@
-<h2>Cadastrar novo usuário</h2>
-
-<%= form_with(model: @user, url: signup_path) do |form| %>
-    <div class="form-user-textbox">
+<div class="container-user-form-screen">
+  <div class="left-side-signup"></div>
+  <div class="right-side-signup">
+    <%= form_with(model: @user, url: signup_path) do |form| %>
+      <div class="form-user-textboxes">
         <%= form.label :username %>
         <%= form.text_field :username, placeholder: "Nome" %>
 
@@ -12,5 +13,7 @@
         <%= form.password_field :password, placeholder: "Senha" %>
 
         <%= form.submit "Signup", id: "user-signup-button" %>
-    </div>
-<% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
