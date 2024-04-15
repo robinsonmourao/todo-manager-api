@@ -55,7 +55,7 @@ body {
   border-radius: 15px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 10);
 }
-  .container-user-form-screen{
+  .container-signup-page, .container-login-page{
     margin: 10px;
     display: flex;
     justify-content: center;
@@ -63,42 +63,39 @@ body {
     flex-wrap: wrap;
     border-radius: inherit;
   }
-    .left-side-signup{
+    .left-side-signup, .left-side-login{
       margin: inherit;
-      background-image: url('user-signup-left-side.png');
+      background-image: url('signup-login-left-side.png');
       width: 250px;
       border-radius: inherit;
       background-size: cover;
     }
-    .right-side-signup{
+    .right-side-signup, .right-side-login{
       margin: inherit;
       width: 300px;
       border-radius: inherit;
     }
-      .form-user-textboxes{
+      .signup-form-textboxes, .login-form-textboxes{
         display: flex;
         flex-direction: column;
         width: 100%;
       }
-      .form-user-textboxes label {
+      .signup-form-textboxes label, .login-form-textboxes label {
         padding-right: 10px;
       }
-      .form-user-textboxes input[type="text"], input[type="password"] {
+      .signup-form-textboxes, input[type="text"], input[type="password"],
+      .login-form-textboxes, input[type="text"], input[type="password"] {
         padding: 8px;
         margin-bottom: 10px;
       }
-      #user-signup-button {
+      #signup-form-submit-button, #login-form-submit-button {
         display: inline-block;
         padding: 10px 20px;
-        color: #fff;
+        color: #000000;
         background-color: #6bff6b;
         border-radius: 5px;
         cursor: pointer;
     }
-
-.form-login-textbox{
-
-}
 
 .task-list {
   display: flex;
