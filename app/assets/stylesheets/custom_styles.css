@@ -12,21 +12,21 @@ body {
   background-image: url('logo.png');
   background-repeat: repeat-y;
   background-size: cover;
-  border-end-start-radius: 40px;
-  border-end-end-radius: 40px;
+  border-end-start-radius: 10px;
+  border-end-end-radius: 10px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 10);
 }
-header.navbar {
-  position: fixed;
-  padding-top: 1%;
-  width: 100%;
-  background-color: transparent;
-}
-.button{
-  border-radius: 10px;
-  font-weight: bold;
-  border: none;
-}
+  header.navbar {
+    position: fixed;
+    padding-top: 1%;
+    width: 100%;
+    background-color: transparent;
+  }
+    .button{
+      border-radius: 10px;
+      font-weight: bold;
+      border: none;
+    }
 
 
 .div-notice{
@@ -42,49 +42,63 @@ header.navbar {
   background-color: rgb(252, 70, 70);
   margin: 0 auto;
 }
-#notice{
-  font-weight: bold;
-  color: rgb(32, 32, 32);
-}
+  #notice{
+    font-weight: bold;
+    color: rgb(32, 32, 32);
+  }
 
 
 .container-yield{
-  height: 400px;
-  background-image: url('body-background.png');
+  height: auto;
+  background-color: aliceblue;
   background-repeat: round;
   border-radius: 15px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 10);
 }
-.container-user-form-screen{
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  height: 70%;
-  border-radius: 15px;
-}
-.left-side-signup{
-  background-image: url('user-signup-left-side.jpg');
-  width: 300px;
-  background-repeat: round;
-  border-radius: inherit;
-}
-.right-side-signup{
-  width: 300px;
-  border-radius: inherit;
-}
-.form-user-textboxes{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-.form-user-textboxes label {
-  padding-right: 10px;
-}
-.form-user-textboxes input[type="text"], input[type="password"] {
-  padding: 8px;
-  margin-bottom: 10px;
-}
+  .container-user-form-screen{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-radius: inherit;
+  }
+    .left-side-signup{
+      margin: inherit;
+      background-image: url('user-signup-left-side.png');
+      width: 250px;
+      border-radius: inherit;
+      background-size: cover;
+    }
+    .right-side-signup{
+      margin: inherit;
+      width: 300px;
+      border-radius: inherit;
+    }
+      .form-user-textboxes{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      .form-user-textboxes label {
+        padding-right: 10px;
+      }
+      .form-user-textboxes input[type="text"], input[type="password"] {
+        padding: 8px;
+        margin-bottom: 10px;
+      }
+      #user-signup-button {
+        display: inline-block;
+        padding: 10px 20px;
+        color: #fff;
+        background-color: #6bff6b;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
+.form-login-textbox{
+
+}
 
 .task-list {
   display: flex;
@@ -93,37 +107,44 @@ header.navbar {
   list-style: none;
   padding: 0;
 }
-.task-list li {
-  width: calc(30% - 20px);
-  margin-bottom: 20px;
-  margin-right: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: transform 0.3s ease;
-  background-color: #c7f464;
-}
-.task-list li:hover {
-  transform: scale(1.1);
-  z-index: 1;
-}
-.form-task-textbox{
-  display: grid;
-  justify-content: center;
-}
-.task-id, .task-title, .task-content {
-  color: black;
-}
+  .task-list li {
+    width: calc(30% - 20px);
+    margin-bottom: 20px;
+    margin-right: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+    background-color: #c7f464;
+  }
+  .task-list li:hover {
+    transform: scale(1.1);
+    z-index: 1;
+  }
+    .form-task-textbox{
+      display: grid;
+      justify-content: center;
+    }
+    .task-id, .task-title, .task-content {
+      color: black;
+    }
 
+#footer-background{
+  height: auto;
+}
+  .footer {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+    border-start-end-radius: 10px;
+    border-start-start-radius: 10px;
 
-.footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  height: 100px;
-}
-#sessionTimer{
-  opacity: 0.4;
-}
+    box-shadow: 0 0 3px rgba(0, 0, 0, 10);
+    height: auto;
+  }
+  #sessionTimer{
+    opacity: 0.4;
+  }
