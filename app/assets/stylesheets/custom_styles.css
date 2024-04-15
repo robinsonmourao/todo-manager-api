@@ -17,15 +17,17 @@ body {
   box-shadow: 0 0 3px rgba(0, 0, 0, 10);
 }
   header.navbar {
-    position: fixed;
+    position: absolute;
     padding-top: 1%;
     width: 100%;
     background-color: transparent;
   }
     .button{
-      border-radius: 10px;
+      border-radius: 5px;
       font-weight: bold;
       border: none;
+      margin: 1px;
+      background-color: cornsilk;
     }
 
 
@@ -50,9 +52,8 @@ body {
 
 .container-yield{
   height: auto;
-  background-color: aliceblue;
-  background-repeat: round;
-  border-radius: 15px;
+  background-color: azure;
+  border-radius: 10px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 10);
 }
   .container-signup-page, .container-login-page{
@@ -95,36 +96,79 @@ body {
         background-color: #6bff6b;
         border-radius: 5px;
         cursor: pointer;
+        font-weight: bold;
     }
 
-.task-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  list-style: none;
-  padding: 0;
+.index-task-list, .new-task-page, .edit-task-page, .show-task-page{
+  margin: 10px;
+  padding: 30px;
 }
-  .task-list li {
-    width: calc(30% - 20px);
-    margin-bottom: 20px;
-    margin-right: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: transform 0.3s ease;
-    background-color: #c7f464;
+  .task-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-  .task-list li:hover {
-    transform: scale(1.1);
-    z-index: 1;
-  }
-    .form-task-textbox{
-      display: grid;
-      justify-content: center;
+    .container-postit-li {
+      display: block;
+      width: calc(20% - 20px);
+      margin: auto;
+      padding: 2px;
+      border-radius: 5px;
+      transition: transform 0.3s ease;
+      background-color: transparent;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 10);
     }
-    .task-id, .task-title, .task-content {
-      color: black;
+      .postit-header{
+        font-weight: bold;
+      }
+      .postit-body{
+        background-color: rgb(255, 245, 104);
+      }
+      .postit-footer{
+        background-color: rgb(90, 255, 255);
+      }
+        .postit-buttons{
+          display: flex;
+          justify-content: space-around;
+        }
+          .postit-add-button, .postit-show-button, .postit-delete-button{
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+          }
+          .postit-add-button {
+            color: blue;
+          }
+          .postit-show-button{
+            color: blue;
+          }
+          .postit-delete-button{
+            color: #ff0000;
+            font-weight: bold;
+          }
+          .postit-corner-botton-right{
+            font-weight: bold;
+          }
+
+    .task-list li:hover {
+      transform: scale(1.1);
+      z-index: 1;
     }
+      .container-postit{
+        border: none;
+        border-radius: 10px;
+        background-color: #000000;
+      }
+        .form-task-textbox{
+          display: grid;
+          justify-content: center;
+        }
+          .task-id, .task-content {
+            color: black;
+          }
+          .task-button{
+            display: block;
+          }
 
 #footer-background{
   height: auto;

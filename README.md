@@ -4,7 +4,11 @@
 
 # Descrição
 ### O ToDo Manager é uma aplicação web simples para gerenciamento de tarefas (todo list) com autenticação de usuário. Ele permite que os usuários criem, visualizem, atualizem e excluam suas próprias tarefas de forma segura e eficiente.
-![Demonstration](https://raw.githubusercontent.com/robinsonmourao/todo-manager-api/main/app/assets/images/demo.png)
+
+### Tela de cadastro
+![Demonstration](https://raw.githubusercontent.com/robinsonmourao/todo-manager-api/main/app/assets/images/demo-signup.png)
+### Exemplo de tarefas cadastradas
+![Demonstration2](https://raw.githubusercontent.com/robinsonmourao/todo-manager-api/main/app/assets/images/demo-tasks.png)
 ---
 
 # Funcionalidades
@@ -121,7 +125,6 @@ sqlite3 storage/development.sqlite3
 * Get more information about [Ruby](https://www.ruby-lang.org/en/documentation/)<br>
 * Get more information about [Ruby on Rails](https://rubyonrails.org/)<br>
 * Get more information about [SQLite3](https://www.sqlite.org/docs.html)<br>
-* Get more information about [RSpec](https://rspec.info/documentation/)
 
 # Autor
 
@@ -135,4 +138,4 @@ sqlite3 storage/development.sqlite3
 </table>
 
 ## :mailbox: Contact us
-* Contact us by email [Marino Hohenheim](mailto:intmarinoreturn0@gmail.com)
+* Contact us by email [Robinson Mourão](mailto:bob.info.guaratiba@gmail.com)

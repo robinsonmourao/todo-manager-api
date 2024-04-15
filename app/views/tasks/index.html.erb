@@ -1,29 +1,34 @@
-<br>
-<ul class="task-list">
+<div class='index-task-list'>
+  <ul class="task-list">
     <% @tasks.each do |task| %>
-        <li>
-            <br>
-            <div>
-                <strong class="task-id">ID:</strong> <span class="task-content"><%= task.id %></span>
-                <strong class="task-title">Titulo:</strong> <span class="task-content"><%= task.title %></span><br>
+      <li class='container-postit-li'>
+        <div class="postit-header">
+          <span class="task-content"><%= task.title %></span><br>
+        </div>
 
-                <span style="display: inline-block;"> 
-                    <%= link_to task_path(task) do %>
-                        <button type="button">Mais detalhes da tarefa</button>
-                    <% end %>
-                </span>
-                <span style="display: inline-block;"> 
-                    <%= link_to edit_task_path(task) do %>
-                        <button type="button">Atualizar tarefa</button>
-                    <% end %>
-                </span>
-                <span style="display: inline-block;"> 
-                    <%= form_with(url: task_path(task), method: :delete, data: { confirm: "Tem certeza que deseja excluir esta tarefa?" }) do |form| %>
-                        <%= form.submit "Excluir tarefa" %>
-                    <% end %>
-                </span>
-            
-            </div>
-        </li>
-        <% end %>
-</ul>
+        <div class="postit-body">
+          <strong class="tast-description"></strong> <span class="task-content"><%= task.description %></span><br>
+        </div>
+
+        <div class="postit-footer">
+
+          <span> 
+            <%= form_with(url: task_path(task), method: :delete, data: { confirm: "Tem certeza que deseja excluir esta tarefa?" }) do |form| %>
+              <%= form.submit "Excluir tarefa" %>
+            <% end %>
+          </span>
+
+          <span class="task-content">Criada em: <%= task.created_at %></span><br>
+          <div class='postit-corner-botton-right'><%= task.id %></div>
+        </div>
+
+        <div class="postit-buttons">
+          <a class='postit-add-button' href="<%= task_path(task)%>">Visualizar</a>
+          <a class='postit-show-button' href="<%= edit_task_path(task)%>">Alterar</a>
+          <%= link_to "Remover", tasks_path(task), method: :delete, data: { confirm: "Tem certeza que deseja excluir esta tarefa?" }, class: 'postit-delete-button' %>
+
+        </div>
+      </li>
+      <% end %>
+  </ul>
+</div>

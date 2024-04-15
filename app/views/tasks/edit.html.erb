@@ -1,9 +1,11 @@
-<%= form_with(model: @task, local: true) do |form| %>
-  <%= form.label :title %>
-  <%= form.text_field :title %>
-  
-  <%= form.label :description %>
-  <%= form.text_field :description %>
-  <br>
-  <%= form.submit %>
-<% end %>
+<div class='edit-task-page'>
+  <%= form_with(model: @task, local: true) do |form| %>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+    
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+    <br>
+    <%= form.submit %>
+  <% end %>
+  </div>
