@@ -50,7 +50,7 @@ class TasksController < ApplicationController
       @task.destroy
       redirect_to tasks_path, notice: 'Task foi destruída.'
     else
-      @notice = 'Não foi possivel excluir a associação entre user e task'
+      @notice = 'Não foi possivel excluir a task'
     end
   end
 

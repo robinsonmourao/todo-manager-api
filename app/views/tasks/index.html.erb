@@ -12,12 +12,6 @@
 
         <div class="postit-footer">
 
-          <span> 
-            <%= form_with(url: task_path(task), method: :delete, data: { confirm: "Tem certeza que deseja excluir esta tarefa?" }) do |form| %>
-              <%= form.submit "Excluir tarefa" %>
-            <% end %>
-          </span>
-
           <span class="task-content">Criada em: <%= task.created_at %></span><br>
           <div class='postit-corner-botton-right'><%= task.id %></div>
         </div>
@@ -25,7 +19,7 @@
         <div class="postit-buttons">
           <a class='postit-add-button' href="<%= task_path(task)%>">Visualizar</a>
           <a class='postit-show-button' href="<%= edit_task_path(task)%>">Alterar</a>
-          <%= link_to "Remover", tasks_path(task), method: :delete, data: { confirm: "Tem certeza que deseja excluir esta tarefa?" }, class: 'postit-delete-button' %>
+          <%= link_to "Remover", task_path(task), method: :delete, class: 'postit-delete-button' %>
 
         </div>
       </li>

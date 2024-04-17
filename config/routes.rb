@@ -3,15 +3,13 @@ Rails.application.routes.draw do
 
   resources :tasks, only: [:show, :new, :create, :destroy]
   resources :users, only: [:edit]
-  resources :user_tasks, only: [:create, :destroy]
-  # resources :sessions, only: [:destroy]
 
   root to: 'home#index'
 
   get '/tasks', to: 'tasks#index'
   post '/tasks/', to: 'tasks#create'
   get '/tasks/:id/edit', to: 'tasks#edit', as: 'edit_task'
-  patch '/tasks/:id', to: 'tasks#update', as: 'update_task'
+  patch '/tasks/:id/update', to: 'tasks#update', as: 'update_task'
 
   get '/signup/', to: 'users#new', as: 'new_user'
   post '/signup/', to: 'users#create'

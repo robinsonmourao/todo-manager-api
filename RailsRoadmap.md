@@ -384,6 +384,8 @@ end
 ### Adiciona botões no ui
 
 `views/<entidades>/index.html.erb`
+
+`Método 1: form_with`
 ```
 <% @<entidades>.each do |<entidade>| %>
     <br>
@@ -400,9 +402,34 @@ end
                 <%= form.submit "Texto" %>
             <% end %>
         </span>
-        
+
     </div>
 <% end %>
+```
+
+`Método 2: link_to`
+```
+./bin/importmap pin rails-ujs
+```
+`cd ./app/views/layout/application.html.erb`
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    ...
+    <%= javascript_include_tag 'script', 'rails-ujs' %>
+    <%= javascript_importmap_tags %>
+  </head>
+```
+```
+import Rails from 'rails-ujs'
+Rails.start()
+```
+`cd ./app/views/tasks/index.html.erb`
+```
+...
+<%= link_to "Remover", destroy_task_path(task), method: :delete, class: 'postit-delete-button' %>
+...
 ```
 
 ### Adiciona ação para editar entidades

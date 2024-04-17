@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   # Se não fizer logout antes de fazer signup, ao fazer signup ele abre as tarefas do usuario anterior
   # Suporta uma sessão simultaneamente
   # Login com email inválido quebra aplicação, TRATAR
+  # Falta implementar unsubscribe de usuarios
 
   def new
     @session = Session.new
