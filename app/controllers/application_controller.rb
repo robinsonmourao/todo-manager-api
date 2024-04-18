@@ -24,7 +24,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_session
-    @session ||= { expires_at: Time.now + SESSION_EXPIRATION_TIME }
+    @session ||= Session.find_by(id: params[:id])
+    # { expires_at: Time.now + SESSION_EXPIRATION_TIME }
     print(@session.inspect)
   end
 

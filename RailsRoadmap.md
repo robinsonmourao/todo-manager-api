@@ -528,7 +528,7 @@ class <Entidade2> < ApplicationRecord
   validates :title, presence: true, uniqueness: { scope: :<entidade>_id }    
 end
 ```
-
+`PS: 'dependent: :destroy' é para ignorar a trava de foreignkey caso tente remover entidades com dependentes`
 ### Desbrickar schema.rb caso fique travado em atributos created_at: nil, updated_at: nil
 
 ```

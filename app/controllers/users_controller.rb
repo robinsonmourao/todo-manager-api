@@ -26,6 +26,37 @@ class UsersController < ApplicationController
     end
   end
 
+  def account_overview
+    if current_user.present?
+      current_user
+    else
+      redirect_to login_path, notice: 'Não é possivel gerenciar sua conta sem estar logado!'
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    if current_user.update(user_params)
+      redirect_to account_path, notice: 'Seus dados foram atualizados!'
+    else
+      redirect_to account_path, notice: 'Não foi possível atualizar seus dados!'
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    if @user
+      if @user.destroy
+        redirect_to root_path, notice: 'Sua conta e tarefas foram eliminadas de forma definitiva. Para gerenciar novas tarefas crie outra conta.'
+      end
+    else
+      redirect_to user_path, notice: 'Não foi possível excluir sua conta!'
+    end
+  end
+
   private
 
   def user_params

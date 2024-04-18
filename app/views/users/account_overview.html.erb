@@ -1,0 +1,40 @@
+<div class='container-account-overview'>
+  <div class='account-overview-top'>
+    <p>Account username <strong><%= current_user.username %></strong></p>
+    <p>Account email: <strong><%= current_user.email %></strong></p>
+    <p>Account creation <%= current_user.created_at %></p>
+    <%= link_to 'Alterar dados cadastrais', '#', class: 'user-edit-button' %>
+    <%= link_to 'Fechar minha conta', user_path(current_user), class: 'default-delete-button close-account-link-autohide' %>
+    <%# Porem não está verificando o matcher das senhas, esta apagando direto %>
+  </div>
+
+  <div class='account-overview-bottom'>
+    <%= form_with(model: @user, url: user_path(current_user), method: :delete) do |form| %>
+      <div class="close-account-form-textboxes">
+
+        <%= form.label :password %>
+        <%= form.password_field :password, placeholder: "Senha" %>
+
+        <%= form.submit "Fechar conta", id: "close-account-form-submit-button" %>
+      </div>
+    <% end %>
+  </div>
+
+
+  <div class="container-edit-user-screen">
+    <%= form_with(model: @user, url: user_path(current_user)) do |form| %>
+      <div class="edit-user-form-textboxes">
+        <%= form.label :username %>
+        <%= form.text_field :username, placeholder: "Nome" %>
+
+        <%= form.label :email %>
+        <%= form.text_field :email, placeholder: "Email" %>
+
+        <%= form.label :password %>
+        <%= form.password_field :password, placeholder: "Senha" %>
+
+        <%= form.submit "Atualizar", id: "edit-user-form-submit-button" %>
+      </div>
+    <% end %>
+  </div>
+</div>

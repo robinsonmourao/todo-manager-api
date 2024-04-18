@@ -19,7 +19,7 @@
         <div class="postit-buttons">
           <a class='postit-add-button' href="<%= task_path(task)%>">Visualizar</a>
           <a class='postit-edit-button' href="<%= edit_task_path(task)%>">Alterar</a>
-          <%= link_to "Remover", task_path(task), method: :delete, class: 'postit-delete-button' %>
+          <%= link_to "Remover", task_path(task), method: :delete, class: 'default-delete-button' %>
 
         </div>
       </li>

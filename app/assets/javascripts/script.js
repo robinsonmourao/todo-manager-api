@@ -12,5 +12,17 @@ onclick = (event) => {
             divNoticeParent.style.display = "none";
             console.log("noticediv null"+noticeDiv);
         }
-   
 };
+
+document.addEventListener('DOMContentLoaded', function() {
+  const closeAccountLink = document.querySelector('.close-account-link-autohide');
+  const accountOverviewBottom = document.querySelector('.account-overview-bottom');
+
+  if (closeAccountLink && accountOverviewBottom) {
+    closeAccountLink.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      accountOverviewBottom.style.display = 'block';
+    });
+  }
+});
