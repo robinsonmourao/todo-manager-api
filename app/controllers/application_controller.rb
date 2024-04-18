@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
+  def current_session
+    @session ||= { expires_at: Time.now + SESSION_EXPIRATION_TIME }
+    print(@session.inspect)
+  end
+
   def store_session(user)
     associate_currentuser_to_session(user)
 
@@ -30,17 +35,21 @@ class ApplicationController < ActionController::Base
   def store_session_remaning_time(db_session)
     expiration = db_session.created_at + SESSION_EXPIRATION_TIME
     db_session[:expires_at] = expiration
+    session_created_at = db_session.expires_at
+    print(session_created_at.to_s)
     db_session.save
   end
 
   def check_previous_sessions(user)
-    db_session = Session.find_by(user_id: user.id, active: 1)
-    return unless db_session
+    if user
+      db_session = Session.find_by(user_id: user.id, active: 1)
+      return unless db_session
 
-    db_session[:active] = 0
-    db_session.save
+      db_session[:active] = 0
+      db_session.save
 
-    check_expired_sessions
+      check_expired_sessions
+    end
   end
 
   def check_expired_sessions
