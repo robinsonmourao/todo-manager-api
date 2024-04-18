@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  # É possível acessar tasks de outros usuários logados
   # Falta implementar unsubscribe de usuarios
 
   def new
@@ -44,11 +43,5 @@ class SessionsController < ApplicationController
     else
       redirect_to login_path, notice: 'Não é possivel fazer logout sem estar logado!'
     end
-  end
-
-  private
-
-  def session_params
-    params.require(:session).permit(:user_id, :expires_at)
   end
 end

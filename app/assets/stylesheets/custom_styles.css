@@ -131,7 +131,7 @@ body {
           display: flex;
           justify-content: space-around;
         }
-          .postit-add-button, .postit-show-button, .postit-delete-button{
+          .postit-add-button, .postit-edit-button, .postit-delete-button{
             text-align: center;
             font-size: 16px;
             cursor: pointer;

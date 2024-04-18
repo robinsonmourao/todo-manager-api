@@ -5,10 +5,22 @@ class ApplicationController < ActionController::Base
 
   SESSION_EXPIRATION_TIME = 30.minutes
 
+  # def session_timeout
+  #   db_session = current_session.find(params[:id])
+  #   print(session.inspect)
+  #   if db_session
+  #     render json: { session_timeout: db_session.created_at + SESSION_EXPIRATION_TIME }
+  #   end
+  # end
+
   private
 
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+  end
+
+  def current_task
+    @current_task ||= Task.find_by(id: params[:id])
   end
 
   def current_session
