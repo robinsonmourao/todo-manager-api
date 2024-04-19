@@ -5,7 +5,6 @@
     <p>Account creation <%= current_user.created_at %></p>
     <%= link_to 'Alterar dados cadastrais', '#', class: 'user-edit-button' %>
     <%= link_to 'Fechar minha conta', user_path(current_user), class: 'default-delete-button close-account-link-autohide' %>
-    <%# Porem não está verificando o matcher das senhas, esta apagando direto %>
   </div>
 
   <div class='account-overview-bottom'>
@@ -22,7 +21,7 @@
 
 
   <div class="container-edit-user-screen">
-    <%= form_with(model: @user, url: user_path(current_user)) do |form| %>
+    <%= form_with(model: @user, url: patch_user_path(current_user), method: :patch) do |form| %>
       <div class="edit-user-form-textboxes">
         <%= form.label :username %>
         <%= form.text_field :username, placeholder: "Nome" %>

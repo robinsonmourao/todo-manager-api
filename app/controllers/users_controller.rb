@@ -39,7 +39,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.update(user_params)
+    @user = User.find(params[:id])
+    if @user.update(user_params)
       redirect_to account_path, notice: 'Seus dados foram atualizados!'
     else
       redirect_to account_path, notice: 'Não foi possível atualizar seus dados!'
@@ -60,6 +61,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.permit(:username, :email, :password)
   end
 end

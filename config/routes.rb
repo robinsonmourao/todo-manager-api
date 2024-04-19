@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show', as: :rails_health_check
 
   resources :tasks, only: [:show, :new, :create, :destroy]
-  resources :users, only: [:edit, :update, :patch, :destroy]
+  resources :users, only: [:edit, :destroy]
 
   root to: 'home#index'
 
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/signup/', to: 'users#new', as: 'new_user'
   post '/signup/', to: 'users#create'
   get '/account/', to: 'users#account_overview', as: 'account'
-  # post '/users/:id', to: 'users#update', as: 'patch_user'
+  patch '/users/:id', to: 'users#update', as: 'patch_user'
   post '/close_account', to: 'users#destroy'
 
   get '/login', to: 'sessions#new'

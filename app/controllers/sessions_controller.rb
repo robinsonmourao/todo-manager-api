@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  # Aviso de double render em 'redirect_to root_path, notice: 'Sua sessão expirou! Faça login novamente para ter acesso a tarefas.''
   def new
     @session = Session.new
   end
