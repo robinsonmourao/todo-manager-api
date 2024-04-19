@@ -14,10 +14,10 @@ onclick = (event) => {
 
 document.addEventListener('DOMContentLoaded', function() {
   const editButton = document.querySelector('.user-edit-button');
-  const editFormContainer = document.querySelector('.container-edit-user-screen');
+  const editFormContainer = document.querySelector('.container-edit-account-option');
 
   const closeAccountLink = document.querySelector('.close-account-link-autohide');
-  const accountOverviewBottom = document.querySelector('.account-overview-bottom');
+  const accountOverviewBottom = document.querySelector('.container-close-account-option');
 
   function collapseAll(){
     editFormContainer.style.display = 'none';

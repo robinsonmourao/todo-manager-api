@@ -41,21 +41,29 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to account_path, notice: 'Seus dados foram atualizados!'
+    if current_user && current_user.authenticate(params[:user][:current_password])
+      if @user.update(user_params)
+        redirect_to account_path, notice: 'Seus dados foram atualizados!'
+      else
+        redirect_to account_path, notice: 'Não foi possível atualizar seus dados!'
+      end
     else
-      redirect_to account_path, notice: 'Não foi possível atualizar seus dados!'
+      redirect_to account_path, notice: 'Senha original inválida!'
     end
   end
 
   def destroy
     @user = User.find(params[:id])
-    if @user
-      if @user.destroy
-        redirect_to root_path, notice: 'Sua conta e tarefas foram eliminadas de forma definitiva. Para gerenciar novas tarefas crie outra conta.'
+    if current_user && current_user.authenticate(params[:user][:password])
+      if @user
+        if @user.destroy
+          redirect_to root_path, notice: 'Sua conta e tarefas foram eliminadas de forma definitiva. Para gerenciar novas tarefas crie outra conta.'
+        end
+      else
+        redirect_to account_path, notice: 'Não foi possível excluir sua conta!'
       end
     else
-      redirect_to user_path, notice: 'Não foi possível excluir sua conta!'
+      redirect_to account_path, notice: 'Senha incorreta!'
     end
   end
 

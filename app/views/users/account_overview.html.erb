@@ -1,5 +1,5 @@
 <div class='container-account-overview'>
-  <div class='account-overview-top'>
+  <div>
     <p>Account username <strong><%= current_user.username %></strong></p>
     <p>Account email: <strong><%= current_user.email %></strong></p>
     <p>Account creation <%= current_user.created_at %></p>
@@ -7,7 +7,7 @@
     <%= link_to 'Fechar minha conta', user_path(current_user), class: 'default-delete-button close-account-link-autohide' %>
   </div>
 
-  <div class='account-overview-bottom'>
+  <div class='container-close-account-option'>
     <%= form_with(model: @user, url: user_path(current_user), method: :delete) do |form| %>
       <div class="close-account-form-textboxes">
 
@@ -20,7 +20,7 @@
   </div>
 
 
-  <div class="container-edit-user-screen">
+  <div class="container-edit-account-option">
     <%= form_with(model: @user, url: patch_user_path(current_user), method: :patch) do |form| %>
       <div class="edit-user-form-textboxes">
         <%= form.label :username %>
@@ -29,8 +29,11 @@
         <%= form.label :email %>
         <%= form.text_field :email, placeholder: "Email" %>
 
+        <strong><%= form.label :current_password %></strong>
+        <%= form.password_field :current_password, placeholder: "Senha atual" %>
+
         <%= form.label :password %>
-        <%= form.password_field :password, placeholder: "Senha" %>
+        <%= form.password_field :password, placeholder: "Nova senha" %>
 
         <%= form.submit "Atualizar", id: "edit-user-form-submit-button" %>
       </div>
