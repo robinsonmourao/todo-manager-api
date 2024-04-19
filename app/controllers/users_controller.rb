@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    if current_user && current_user.authenticate(params[:user][:password])
+    if current_user && current_user.authenticate(params[:user][:current_password])
       if @user
         if @user.destroy
           redirect_to root_path, notice: 'Sua conta e tarefas foram eliminadas de forma definitiva. Para gerenciar novas tarefas crie outra conta.'

@@ -115,16 +115,23 @@ body {
     margin: 10px;
     padding: 35px;
   }
-    .container-edit-account-option{
+    .container-edit-account-option, .container-close-account-option{
       display: none;
     }
       .edit-user-form-textboxes{
         display: flex;
         flex-direction: column;
+        background-color: bisque;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 5px;
       }
-    .container-close-account-option{
-      display: none;
-    }
+        .current-password-field{
+          padding: 10px;
+          margin: 10px;
+          border-radius: 5px;
+          background-color: #ff9c9c;
+        }
 
 .index-task-list, .new-task-page, .edit-task-page, .show-task-page{
   margin: 10px;

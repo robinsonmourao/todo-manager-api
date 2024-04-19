@@ -11,8 +11,10 @@
     <%= form_with(model: @user, url: user_path(current_user), method: :delete) do |form| %>
       <div class="close-account-form-textboxes">
 
-        <%= form.label :password %>
-        <%= form.password_field :password, placeholder: "Senha" %>
+        <div class="current-password-field">
+          <strong><%= form.label :current_password %>:</strong>
+          <%= form.password_field :current_password, placeholder: "Senha atual", autocomplete: "off" %>
+        </div>
 
         <%= form.submit "Fechar conta", id: "close-account-form-submit-button" %>
       </div>
@@ -29,12 +31,13 @@
         <%= form.label :email %>
         <%= form.text_field :email, placeholder: "Email" %>
 
-        <strong><%= form.label :current_password %></strong>
-        <%= form.password_field :current_password, placeholder: "Senha atual" %>
-
         <%= form.label :password %>
         <%= form.password_field :password, placeholder: "Nova senha" %>
 
+        <div class="current-password-field">
+          <strong><%= form.label :current_password %>:</strong>
+          <%= form.password_field :current_password, placeholder: "Senha atual", autocomplete: "off" %>
+        </div>
         <%= form.submit "Atualizar", id: "edit-user-form-submit-button" %>
       </div>
     <% end %>
