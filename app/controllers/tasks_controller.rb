@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :check_expired_sessions
+  before_action :require_login, :check_expired_sessions
   before_action :validate_task_ownership, only: [:show, :edit, :destroy]
 
   def index

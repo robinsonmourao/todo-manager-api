@@ -70,4 +70,10 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  def require_login
+    unless session[:user_id] && current_user
+      redirect_to login_path, notice: 'Você deve estar logado para continuar!'
+    end
+  end
 end
