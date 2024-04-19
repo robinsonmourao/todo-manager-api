@@ -9,10 +9,14 @@
         </div>
         <div id="navbarMenuHeroC" class="navbar-menu">
           <div class="container-header-top-right-buttons">
+
             <% if [signup_path, login_path, root_path].include?(request.path) %>
-            <%= link_to "Sign-Up", new_user_path, class: "header-signup-button" %>
-            <%= link_to "Log-in", login_path, class: "header-login-button" %>
+            <% unless [root_path].include?(request.path) %>
+              <%= link_to "Sign-Up", new_user_path, class: "header-signup-button" %>
+              <%= link_to "Log-in", login_path, class: "header-login-button" %>
+              <% end %>
             <% end %>
+
             <% unless [signup_path, login_path, root_path].include?(request.path) %>
               <%= link_to "Account settings", account_path, class: "header-settings-button" %>
               <%= link_to "Logout", logout_path, method: :delete, class: "header-logout-button"%>
@@ -36,6 +40,7 @@
   <div class="hero-foot">
     <nav class="tabs is-boxed is-fullwidth">
       <div class="container">
+      <% unless [root_path, signup_path, login_path].include?(request.path) %>
         <ul>
           <li class="<%= 'is-active' if current_page?(root_path) || current_page?(new_user_path) || current_page?(login_path) %>">
             <%= link_to "Home", root_path %></li>
@@ -44,6 +49,7 @@
           <li class="<%= 'is-active' if current_page?(new_task_path) %>">
             <%= link_to "Criar uma nova task", new_task_path %></li>
         </ul>
+        <% end %>
       </div>
     </nav>
   </div>

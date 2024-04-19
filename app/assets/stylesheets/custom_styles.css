@@ -29,6 +29,7 @@ body {
     }
       .header-signup-button, .header-login-button, .header-settings-button, .header-logout-button{
         padding: 10px 20px;
+        margin: 5px;
         font-size: 16px;
         font-weight: bold;
         text-align: center;
@@ -37,7 +38,36 @@ body {
         cursor: pointer;
         transition: background-color 0.3s ease;
         background-color: azure;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 10);
+        width: 100px;
       }
+
+.container-home-background{
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  background-image: url('backgrounds/home-background.png');
+  background-repeat: space;
+  background-size: cover;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  transform: translateX(-10px);
+  background-position: center bottom;
+}
+  @font-face {
+    font-family: 'HyliaSerifBeta-Regular';
+    src: url('ReggaeOne-Regular.ttf') format('opentype');
+    font-weight: bolder;
+  }
+  h2{
+    font-family: 'HyliaSerifBeta-Regular', sans-serif;
+    font-size: 40px;
+    line-height: 1.5;
+    background-color: rgba(255, 102, 191, 0.1);
+    color: black;
+  }
 
 .div-notice{
   display: flex;
