@@ -73,16 +73,19 @@ body {
     border-radius: inherit;
   }
     .left-side-signup, .left-side-login{
-      margin: inherit;
+      margin: 20px;
       background-image: url('signup-login-left-side.png');
       width: 250px;
       border-radius: inherit;
       background-size: cover;
     }
     .right-side-signup, .right-side-login{
-      margin: inherit;
+      margin: 20px;
+      padding: 20px;
       width: 300px;
-      border-radius: inherit;
+      background-color: bisque;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 10);
     }
       .signup-form-textboxes, .login-form-textboxes{
         display: flex;
