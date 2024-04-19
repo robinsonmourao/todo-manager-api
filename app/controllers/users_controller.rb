@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :check_expired_sessions
+  before_action :require_login, only: [:index, :show, :edit, :update, :destroy]
   def index
     @user = User.all
   end
