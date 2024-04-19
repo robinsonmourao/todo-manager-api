@@ -6,11 +6,9 @@ onclick = (event) => {
 
         if (noticeDiv == null){
             divNoticeParent.style.display = "none";
-            console.log("noticediv com valor");
         }
         else{
             divNoticeParent.style.display = "none";
-            console.log("noticediv null"+noticeDiv);
         }
 };
 

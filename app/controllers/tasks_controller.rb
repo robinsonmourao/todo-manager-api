@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :require_login, :check_expired_sessions
+  before_action :check_expired_sessions
   before_action :validate_task_ownership, only: [:show, :edit, :destroy]
 
   def index
@@ -59,12 +59,6 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:title, :description)
-  end
-
-  def require_login
-    unless session[:user_id] && current_user
-      redirect_to login_path, notice: 'Você deve estar logado para continuar!'
-    end
   end
 
   def validate_task_ownership

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :check_expired_sessions
   def index
     @user = User.all
   end
@@ -61,6 +62,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :password)
   end
 end
