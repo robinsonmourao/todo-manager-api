@@ -38,7 +38,6 @@ class ApplicationController < ActionController::Base
   def store_session_remaning_time(db_session)
     expiration = db_session.created_at + SESSION_EXPIRATION_TIME
     db_session[:expires_at] = expiration
-    session_created_at = db_session.expires_at
     db_session.save
   end
 
