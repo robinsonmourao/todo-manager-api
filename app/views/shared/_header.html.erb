@@ -1,49 +1,39 @@
 <div class="header-container">
   <!-- Hero head: will stick at the top -->
-  <div class="hero-head">
-    <header class="navbar">
-      <div class="container-header-buttons">
-        <div class="navbar-brand">
-          <span class="navbar-burger" data-target="navbarMenuHeroC">
-          </span>
-        </div>
-        <div id="navbarMenuHeroC" class="navbar-menu">
-          <div class="container-header-top-right-buttons">
-
-            <% if [signup_path, login_path, root_path].include?(request.path) %>
-            <% unless [root_path].include?(request.path) %>
-              <%= link_to "Sign-Up", new_user_path, class: "header-signup-button" %>
-              <%= link_to "Log-in", login_path, class: "header-login-button" %>
+  <% unless [signup_path, login_path, root_path].include?(request.path) %>
+    <div class="hero-head">
+      <header class="navbar">
+        <div class="container-header-buttons">
+          <div class="navbar-brand">
+            <span class="navbar-burger" data-target="navbarMenuHeroC">
+            </span>
+          </div>
+          <div id="navbarMenuHeroC" class="navbar-menu">
+            <div class="container-header-top-right-buttons">
+              <% unless [signup_path, login_path, root_path].include?(request.path) %>
+                <%= link_to "Account settings", account_path, class: "header-settings-button" %>
+                <%= link_to "Logout", logout_path, method: :delete, class: "header-logout-button"%>
               <% end %>
-            <% end %>
-
-            <% unless [signup_path, login_path, root_path].include?(request.path) %>
-              <%= link_to "Account settings", account_path, class: "header-settings-button" %>
-              <%= link_to "Logout", logout_path, method: :delete, class: "header-logout-button"%>
-            <% end %>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
-  </div>
-
-  <!-- Hero content: will be in the middle -->
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <p class="title">
-        Quiabo manager 1.0
-      </p>
+      </header>
     </div>
-  </div>
-
+    <!-- Hero content: will be in the middle -->
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <p class="title">
+          Quiabo manager 1.0
+        </p>
+      </div>
+    </div>
+  <% end %>
   <!-- Hero footer: will stick at the bottom -->
   <div class="hero-foot">
     <nav class="tabs is-boxed is-fullwidth">
       <div class="container">
       <% unless [root_path, signup_path, login_path].include?(request.path) %>
         <ul>
-          <li class="<%= 'is-active' if current_page?(root_path) || current_page?(new_user_path) || current_page?(login_path) %>">
-            <%= link_to "Home", root_path %></li>
           <li class="<%= 'is-active' if current_page?(tasks_path) %>">
             <%= link_to "Listar minhas tasks", tasks_path %></li>
           <li class="<%= 'is-active' if current_page?(new_task_path) %>">

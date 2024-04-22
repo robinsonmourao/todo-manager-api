@@ -5,9 +5,7 @@
 # Descrição
 ### O ToDo Manager é uma aplicação web simples para gerenciamento de tarefas (todo list) com autenticação de usuário. Ele permite que os usuários criem, visualizem, atualizem e excluam suas próprias tarefas de forma segura e eficiente.
 
-### Página inicial
-![Demonstration0](https://raw.githubusercontent.com/robinsonmourao/todo-manager-api/main/app/assets/images/demo-home.png)
-### Tela de cadastro
+### Tela de cadastro/página inicial
 ![Demonstration](https://raw.githubusercontent.com/robinsonmourao/todo-manager-api/main/app/assets/images/demo-signup.png)
 ### Exemplo de tarefas cadastradas
 ![Demonstration2](https://raw.githubusercontent.com/robinsonmourao/todo-manager-api/main/app/assets/images/demo-tasks.png)

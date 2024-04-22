@@ -27,7 +27,7 @@ body {
       justify-content: flex-end;
       padding: 10px;
     }
-      .header-signup-button, .header-login-button, .header-settings-button, .header-logout-button{
+      .header-settings-button, .header-logout-button{
         padding: 10px 20px;
         margin: 5px;
         font-size: 16px;
@@ -42,33 +42,6 @@ body {
         width: 100px;
       }
 
-.container-home-background{
-  margin: 10px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  background-image: url('backgrounds/home-background.png');
-  background-repeat: space;
-  background-size: cover;
-  width: 100%;
-  height: auto;
-  align-items: center;
-  transform: translateX(-10px);
-  background-position: center bottom;
-}
-  @font-face {
-    font-family: 'HyliaSerifBeta-Regular';
-    src: url('ReggaeOne-Regular.ttf') format('opentype');
-    font-weight: bolder;
-  }
-  h2{
-    font-family: 'HyliaSerifBeta-Regular', sans-serif;
-    font-size: 40px;
-    line-height: 1.5;
-    background-color: rgba(255, 102, 191, 0.1);
-    color: black;
-  }
-
 .div-notice{
   display: flex;
   position: fixed;
@@ -80,6 +53,7 @@ body {
   width: auto;
   border-radius: 10px;
   background-color: rgb(252, 70, 70, 0.8);
+  z-index: 1;
 }
   #notice{
     font-weight: bold;
@@ -101,20 +75,28 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     border-radius: inherit;
+    background-image: url('backgrounds/home-background.png');
+    background-repeat: space;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+    transform: translateX(-10px);
+    background-position: center bottom;
   }
     .left-side-signup, .left-side-login{
       margin: 20px;
       background-image: url('signup-login-left-side.png');
-      width: 250px;
+      width: 300px;
       border-radius: inherit;
       background-size: cover;
     }
     .right-side-signup, .right-side-login{
       margin: 20px;
       padding: 20px;
-      width: 300px;
-      background-color: bisque;
       border-radius: 10px;
+      width: 300px;
+      background-color: rgba(70, 164, 252, 0.3);
+      backdrop-filter: blur(10px);
       box-shadow: 0 0 5px rgba(0, 0, 0, 10);
     }
       .signup-form-textboxes, .login-form-textboxes{
@@ -133,12 +115,22 @@ body {
       #signup-form-submit-button, #login-form-submit-button {
         display: inline-block;
         padding: 10px 20px;
+        margin-top: 20px;
         color: #000000;
-        background-color: #6bff6b;
+        background-color: #f5ff6b;
         border-radius: 5px;
+        border: 0;
         cursor: pointer;
         font-weight: bold;
       }
+      .container-signup-link, .container-login-link{
+        display: flex;
+        justify-content: end;
+      }
+        .signup-login-link{
+          margin-left: 10px;
+          font-weight: bold;
+        }
 
   .container-account-overview{
     display: flex;

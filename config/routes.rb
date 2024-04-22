@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :tasks, only: [:show, :new, :create, :destroy]
   resources :users, only: [:edit, :destroy]
 
-  root to: 'home#index'
+  root to: 'users#new'
 
   get '/tasks', to: 'tasks#index'
   post '/tasks/', to: 'tasks#create'

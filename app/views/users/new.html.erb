@@ -14,6 +14,10 @@
 
         <%= form.submit "Signup", id: "signup-form-submit-button" %>
       </div>
+      <div class='container-login-link'>
+        <p>Já possui conta?</p>
+        <%= link_to 'Entrar', login_path, class:'signup-login-link' %>
+      </div>
     <% end %>
   </div>
 </div>
