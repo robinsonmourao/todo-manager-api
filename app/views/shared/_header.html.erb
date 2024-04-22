@@ -4,17 +4,11 @@
     <div class="hero-head">
       <header class="navbar">
         <div class="container-header-buttons">
-          <div class="navbar-brand">
-            <span class="navbar-burger" data-target="navbarMenuHeroC">
-            </span>
-          </div>
-          <div id="navbarMenuHeroC" class="navbar-menu">
-            <div class="container-header-top-right-buttons">
-              <% unless [signup_path, login_path, root_path].include?(request.path) %>
-                <%= link_to "Account settings", account_path, class: "header-settings-button" %>
-                <%= link_to "Logout", logout_path, method: :delete, class: "header-logout-button"%>
-              <% end %>
-            </div>
+          <div class="container-header-top-right-buttons">
+            <% unless [signup_path, login_path, root_path].include?(request.path) %>
+              <%= link_to "Account settings", account_path, class: "header-settings-button" %>
+              <%= link_to "Logout", logout_path, method: :delete, class: "header-logout-button"%>
+            <% end %>
           </div>
         </div>
       </header>
