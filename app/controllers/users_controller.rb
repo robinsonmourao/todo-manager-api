@@ -15,6 +15,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    if check_taken_credentials(@user)
+      return
+    end
+
     if @user.save
       if @user.authenticate(params[:user][:password])
 
@@ -23,8 +27,6 @@ class UsersController < ApplicationController
 
         redirect_to tasks_path, notice: "Bem-vindo, #{@user.username}!"
       end
-    else
-      redirect_to new_user_path, notice: 'Nome de usuário já está em uso. Por favor, escolha outro.'
     end
   end
 
@@ -72,5 +74,22 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :email, :password)
+  end
+
+  def check_taken_credentials(new_user)
+    user_by_username = User.find_by(username: new_user[:username])
+    user_by_email = User.find_by(email: new_user[:email])
+
+    print(user_by_email.inspect)
+
+    if user_by_username.present? && !user_by_email.present?
+      redirect_to new_user_path, notice: "Nome de usuário: #{new_user[:username]} já está em uso. Por favor, escolha outro."
+    elsif user_by_email.present? && !user_by_username.present?
+      redirect_to new_user_path, notice: "Email de usuário: #{new_user[:email]} já está em uso. Por favor, escolha outro."
+    elsif user_by_email.present? && user_by_username.present?
+      redirect_to new_user_path, notice: "Nome de usuário: #{new_user[:username]} e Email de usuário: #{new_user[:email]} já está em uso. Por favor, escolha outro."
+    else
+      false
+    end
   end
 end
