@@ -5,10 +5,76 @@
 # Descrição
 ### O ToDo Manager é uma aplicação web simples para gerenciamento de tarefas (todo list) com autenticação de usuário. Ele permite que os usuários criem, visualizem, atualizem e excluam suas próprias tarefas de forma segura e eficiente.
 
-### Tela de cadastro/página inicial
-![Demonstration](https://raw.githubusercontent.com/robinsonmourao/todo-manager-api/main/app/assets/images/demo-signup.png)
-### Exemplo de tarefas cadastradas
-![Demonstration2](https://raw.githubusercontent.com/robinsonmourao/todo-manager-api/main/app/assets/images/demo-tasks.png)
+# Status de desenvolvimento
+
+| Tarefa             | Status        | Progresso                         |
+|--------------------|--------------|---------------------------------------|
+| `Desenvolvimento da API`    | CONCLUÍDO     | -              |
+| `Testes unitários`          | CANCELADO     | -              |
+| `Testes E2E(Ponta a ponta)` | PROGRESSO     | PAUSADO        |
+| `Documentação readme.md`    | PROGRESSO     | PAUSADO        |
+| `Casos de uso`              | PROGRESSO     | PAUSADO        |
+| `Fluxo de eventos`          | PENDENTE      | -              |
+| `Fluxos alternativos`       | PENDENTE      | -              |
+| `Fluxos de exceção`         | PENDENTE      | -              |
+| `Containerização  `         | PENDENTE      | -              |
+| `Hospedagem`                | PENDENTE      | -              |
+
+# Estrutura de arquivos
+
+## Estrutura base
+
+- **.vscode** -> Contém arquivos de configurações da IDE Visual Studio Code
+  - `settings.json` -> Configuração da IDE Visual Studio Code
+
+- **assets** -> Contém imagens, sintaxe JavaScript e estilos CSS
+  - `images` -> Contém imagens
+    - `backgrounds` -> Contém imagens de fundo
+      - `home-background.png` -> Imagem de fundo da tela root(signup/login)
+      - `site-background.png` -> Imagem de fundo do site
+    - `demo-signup` -> Imagem de demonstração da tela 'signup'
+    - `demo-tasks` -> Imagem de demonstração da tela 'tasks'
+    - `logo` -> Imagem da logo do Todo-manager-api
+    - `signup-login-left-side` -> Imagem do lado esquerdo das telas 'signup' e 'login'
+  - `javascripts` -> Contém sintaxe JavaScript
+    - `script.js` -> Arquivo de sintaxe JavaScript
+  - `stylesheets` -> Contém estilos CSS
+    - `custom_styles.css` -> Arquivo de estilos CSS
+
+- **controllers** -> Contém controladores do modelo MV[C]
+  - `application_controller.rb` -> Controlador principal da aplicação
+  - `home_controller.rb` -> Controlador de home (OBSOLETO)
+  - `sessions_controller.rb` -> Controlador de sessões
+  - `tasks_controller.rb` -> Controlador de tarefas
+  - `users_controller.rb` -> Controlador de usuários
+
+- **helpers** -> Contém módulos utilizados para recursividade
+  - `logger_helper.rb` -> Módulo para simplificar print() de debug
+
+- **javascript** -> Contém arquivos de imports via JavaScript
+  - `controllers` -> Contém arquivos controladores de imports via JavaScript
+    - `application.js` -> import do 'rails-ujs' para redirecionamento correto do 'link_to'
+
+- **models** -> Contém modelos do modelo [M]VC
+  - `application_record.rb` -> modelo principal do Rails
+  - `session.rb` -> modelo de sessão
+  - `task.rb` -> modelo de tarefa
+  - `user.rb` -> modelo de usuário
+
+- **views** -> Contém 
+- **** -> Contém 
+- **** -> Contém 
+- **db**
+  - `migrate`
+    - `<000000000000XX_create_<nome-tabela>>` -> Scripts SQL
+    - `...`
+  - `schema.rb` -> Esquema completo de migração <br>
+
+### Telas
+## root/signup
+![root/signup](https://raw.githubusercontent.com/robinsonmourao/todo-manager-api/main/app/assets/images/demo-signup.png)
+### Tasks cadastradas
+![Tasks cadastradas](https://raw.githubusercontent.com/robinsonmourao/todo-manager-api/main/app/assets/images/demo-tasks.png)
 ---
 
 # Funcionalidades
